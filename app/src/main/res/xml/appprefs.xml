@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <EditTextPreference
+            android:inputType="number"
+            android:key="maxTime"
+            android:summary="Temps maximum de parole par personne pour la réunion."
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:title="Temps max (minutes) :" />
+    <ListPreference
+        android:defaultValue="false"
+        android:entries="@array/listtimemax"
+        android:entryValues="@array/listtimevalue"
+        android:key="list_preference_1"
+        android:persistent="true"
+        android:summary="Temps max"
+        android:title="List preference"
+        android:visibility="visible"
+        tools:visibility="visible" />
+</PreferenceScreen>
