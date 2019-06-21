@@ -9,18 +9,13 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nialon.time2talk.controller.ParticipantC;
@@ -28,6 +23,7 @@ import com.nialon.time2talk.controller.ParticipantsC;
 import com.nialon.time2talk.model.ParticipantM;
 import com.nialon.time2talk.view.ParticipantV;
 
+// todo: possibility to talk more than one participant at a time
 public class MainActivity extends AppCompatActivity
 {
     Integer timeMax=6000;
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         prefs.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
         String s = prefs.getString("maxTime", "15");
         timeMax = Integer.parseInt(s);
-        allParticipants = new ParticipantsC(timeMax);
+        allParticipants = new ParticipantsC(timeMax, this);
 
         if (savedInstanceState != null)
         {
@@ -114,10 +110,12 @@ public class MainActivity extends AppCompatActivity
     public void addItem(View v)
     {
         Log.d("addItem", "Start");
+        LinearLayout lhelp = findViewById(R.id.layout_help);
+        lhelp.setVisibility(View.GONE);
 
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
-        ParticipantM participantM = new ParticipantM("---");
+        ParticipantM participantM = new ParticipantM(getString(R.string.initvalue3)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
         ParticipantV participantV = new ParticipantV(participantM, allParticipants, this);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmation");
-        builder.setMessage("Voulez-vous vraiment remettre toutes les données à zéro ?");
+        builder.setMessage(getString(R.string.resetconfirmation));
         builder.setCancelable(false);
         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener()
         {
@@ -136,7 +134,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 allParticipants.reset();
-                Toast.makeText(getApplicationContext(), "Données remises à zéro", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.datareset), Toast.LENGTH_SHORT).show();
             }
         });
 

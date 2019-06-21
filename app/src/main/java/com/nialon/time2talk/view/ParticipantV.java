@@ -1,16 +1,18 @@
 package com.nialon.time2talk.view;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 import com.nialon.time2talk.R;
 import com.nialon.time2talk.controller.ParticipantsC;
@@ -30,6 +32,7 @@ public class ParticipantV
     private ImageButton imgRemove;
     private TextView tvDuration;
     private TextView tvPercentage;
+    private ProgressBar progressBar;
 
     public LinearLayout getParticipantLayout()
     {
@@ -40,12 +43,13 @@ public class ParticipantV
     {
         Typeface typeface;
         typeface = Typeface.createFromAsset(context.getAssets(), "LED.Font.ttf");
-        LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+        LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+        lparams.setMargins(5,0,5,0);
+        //lparams.gravity = Gravity.CENTER_HORIZONTAL;
         this.participantLayout = new LinearLayout(context);
 
         participantLayout.setOrientation(LinearLayout.HORIZONTAL);
         //participantLayout.setBackgroundColor(Color.rgb(0,255,255));
-        participantLayout.setPadding(5,0,5,0);
 
         this.model = participantM;
         this.allparticipants = allparticpants;
@@ -54,86 +58,69 @@ public class ParticipantV
 
         tvName=new TextView(context);
         tvName.setText(model.getName());
-        tvName.setLayoutParams(lparams);
-        tvName.setTextColor(ctxt.getResources().getColor(android.R.color.holo_blue_dark));
-        tvName.setTextSize(24);
-        tvName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                final EditText edtText = new EditText(ctxt);
-                edtText.setText(((TextView)v).getText());
-                edtText.setPaintFlags(0);
+        tvName.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_blue_dark));
+        tvName.setTextSize(22);
+        tvName.setTag(this);
+        tvName.setOnClickListener(allparticipants.getListener1());
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
-                builder.setTitle("Modification");
-                builder.setMessage("Veuillez saisir le nom " );
-                builder.setCancelable(true);
-                builder.setView(edtText);
-                builder.setNeutralButton("OK", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        ((TextView)v).setText(edtText.getText());
-                        participantM.setName(edtText.getText().toString());
-                        Toast.makeText(ctxt, "Le nom a été modifié " + edtText.getText() , Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.show();
-            }
-        });
         participantLayout.addView(tvName);
 
         // Button Start/Stop
         imgStartStop = new ImageButton(ctxt);
         imgStartStop.setImageResource(android.R.drawable.ic_media_play);
-        imgStartStop.setTag(0);
-        imgStartStop.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                allparticpants.unselectAll();
-                toggleselect();
-            }
-
-        });
+        imgStartStop.setTag(this);
+        imgStartStop.setOnClickListener(allparticipants.getListener2());
         participantLayout.addView(imgStartStop);
 
         // Duration
         tvDuration = new TextView(ctxt);
         tvDuration.setText(R.string.initvalue2);
         tvDuration.setTypeface(typeface);
-        tvDuration.setTextSize(32);
-        tvDuration.setTextColor(ctxt.getResources().getColor(android.R.color.holo_green_light));
+        tvDuration.setTextSize(30);
+        tvDuration.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_green_light));
         participantLayout.addView(tvDuration);
 
         // Percentage
+        progressBar = new ProgressBar(ctxt);
+        progressBar.setIndeterminate(false);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setMax(100);
+        progressBar.setProgress(1, false);
+
+
+        participantLayout.addView(progressBar);
+        /*
         tvPercentage=new TextView(ctxt);
         tvPercentage.setText(R.string.initvalue1);
         tvPercentage.setTextSize(24);
         participantLayout.addView(tvPercentage);
-        LinearLayout.LayoutParams wparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        LinearLayout.LayoutParams wparams2= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.3f);
-        LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f);
+        */
+
+
+        LinearLayout.LayoutParams wparams1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f);
+        LinearLayout.LayoutParams wparams2= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
+        LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+        LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f);
+        LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
 
 
         // Remove participant
         imgRemove = new ImageButton(ctxt);
         imgRemove.setImageResource(android.R.drawable.ic_menu_delete);
-        imgRemove.setTag(0);
-        imgRemove.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Toast.makeText(ctxt, "Participant " + tvName.toString() + " removed ", Toast.LENGTH_LONG).show();
-            }
+        imgRemove.setTag(this);
+        imgRemove.setOnClickListener(allparticipants.getListener3());
 
-        });
         participantLayout.addView(imgRemove);
+        participantLayout.setLayoutParams(lparams);
 
-        tvName.setLayoutParams(wparams3);
+        // todo : revoir  le dimensionnement des view
+        tvName.setLayoutParams(wparams1);
         imgStartStop.setLayoutParams(wparams2);
-        tvDuration.setLayoutParams(wparams);
-        tvPercentage.setLayoutParams(wparams2);
-        imgRemove.setLayoutParams(wparams2);
+        tvDuration.setGravity(Gravity.CENTER_HORIZONTAL);
+        tvDuration.setLayoutParams(wparams3);
+        //tvPercentage.setLayoutParams(wparams4);
+        progressBar.setLayoutParams(wparams4);
+        imgRemove.setLayoutParams(wparams5);
     }
 
     public TextView getTvName()
@@ -145,7 +132,7 @@ public class ParticipantV
     {
         this.tvName = tvName;
     }
-    private void toggleselect()
+    public void toggleselect()
     {
         if (selected)
         {
@@ -167,7 +154,7 @@ public class ParticipantV
     }
     public void select()
     {
-        System.out.println("not selected");
+        System.out.println("select");
         selected = true;
 
         tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
@@ -175,6 +162,7 @@ public class ParticipantV
     }
     public void unselect()
     {
+        System.out.println("unselect");
         selected = false;
         tvName.setTypeface(null, Typeface.NORMAL);
         this.imgStartStop.setImageResource(android.R.drawable.ic_media_play);
@@ -200,6 +188,13 @@ public class ParticipantV
         }
 
         tvDuration.setText((String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, val/60, val%60)));
-        tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
+        //tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
+     //   progressBar.setProgress((val*100)/tot);
+        progressBar.setProgress(50);
+    }
+
+    public ParticipantM getParticipantM()
+    {
+        return model;
     }
 }

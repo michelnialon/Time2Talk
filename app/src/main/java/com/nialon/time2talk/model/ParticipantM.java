@@ -6,10 +6,11 @@ public class ParticipantM
     private Integer mDuration;
     private Integer id;
 
-    public ParticipantM(String mName)
+    public ParticipantM(String mName, Integer id)
     {
         this.mName = mName;
         this.mDuration = 0;
+        this.id = id;
     }
 
     public String getName()
@@ -35,6 +36,7 @@ public class ParticipantM
     public void incDuration()
     {
         this.mDuration++;
+        System.out.println("Particpant " + id + " " + mDuration);
     }
 
     @Override

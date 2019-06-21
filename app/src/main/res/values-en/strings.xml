@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Time2Talk</string>
+    <string name="namemodified">The name of participant has been modified</string>
+    <string name="total">Total</string>
+    <string name="image">Image</string>
+    <string name="initvalue1">0%</string>
+    <string name="initvalue2">0:00:00</string>
+    <string name="initvalue3">Participant</string>
+    <string name="resetconfirmation">Are you sure you want to reset the datas?</string>
+    <string name="datareset">Data have been reset</string>
+    <string name="participantremove">Participant removed:</string>
+</resources>
