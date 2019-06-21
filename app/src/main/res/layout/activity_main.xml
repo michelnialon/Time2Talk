@@ -49,10 +49,10 @@
                 android:id="@+id/tvhelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click on + to add particpant"
-                android:textSize="32dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Click on + to add particpant"
+                android:textSize="32dp" />
         </LinearLayout>
 
     </LinearLayout>
