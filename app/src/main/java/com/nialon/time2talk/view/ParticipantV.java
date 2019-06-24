@@ -81,20 +81,22 @@ public class ParticipantV
         participantLayout.addView(tvDuration);
 
         // Percentage
+        /*
         progressBar = new ProgressBar(ctxt);
         progressBar.setIndeterminate(false);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setMax(100);
         progressBar.setProgress(1, false);
+        */
 
 
-        participantLayout.addView(progressBar);
-        /*
+        //participantLayout.addView(progressBar);
+
         tvPercentage=new TextView(ctxt);
         tvPercentage.setText(R.string.initvalue1);
         tvPercentage.setTextSize(24);
         participantLayout.addView(tvPercentage);
-        */
+
 
 
         LinearLayout.LayoutParams wparams1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f);
@@ -118,8 +120,8 @@ public class ParticipantV
         imgStartStop.setLayoutParams(wparams2);
         tvDuration.setGravity(Gravity.CENTER_HORIZONTAL);
         tvDuration.setLayoutParams(wparams3);
-        //tvPercentage.setLayoutParams(wparams4);
-        progressBar.setLayoutParams(wparams4);
+        tvPercentage.setLayoutParams(wparams4);
+        //progressBar.setLayoutParams(wparams4);
         imgRemove.setLayoutParams(wparams5);
     }
 
@@ -188,9 +190,9 @@ public class ParticipantV
         }
 
         tvDuration.setText((String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, val/60, val%60)));
-        //tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
+        tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
      //   progressBar.setProgress((val*100)/tot);
-        progressBar.setProgress(50);
+     //   progressBar.setProgress(50);
     }
 
     public ParticipantM getParticipantM()

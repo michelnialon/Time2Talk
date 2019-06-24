@@ -18,6 +18,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import com.nialon.time2talk.controller.ParticipantC;
 import com.nialon.time2talk.controller.ParticipantsC;
 import com.nialon.time2talk.model.ParticipantM;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     Integer timeMax=6000;
     Typeface m_Typeface;
     private ParticipantsC allParticipants;
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +43,14 @@ public class MainActivity extends AppCompatActivity
         Log.d("fun", "onCreate");
         setContentView(R.layout.activity_main);
         m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        adView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.setAdSize(AdSize.BANNER);
+//        adView.setAdUnitId("ca-app-pub-3940256099942544~3347511713");
+
+        adView.loadAd(adRequest);
 
         Context context = getApplicationContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

@@ -9,4 +9,5 @@
     <string name="resetconfirmation">Voulez-vous vraiment remettre toutes les données à zéro ?</string>
     <string name="datareset">Les données ont été remises à zéro</string>
     <string name="participantremove">Participant supprimé :</string>
+    <string name="str_advertisement">Publicité</string>
 </resources>

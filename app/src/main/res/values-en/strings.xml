@@ -10,4 +10,5 @@
     <string name="resetconfirmation">Are you sure you want to reset the datas?</string>
     <string name="datareset">Data have been reset</string>
     <string name="participantremove">Participant removed:</string>
+    <string name="str_advertisement">Advertisement</string>
 </resources>
