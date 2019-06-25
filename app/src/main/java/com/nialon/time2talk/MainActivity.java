@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity
                 {
                     timeMax = 15;
                 }
+
                 Log.d("maxTime", String.valueOf(timeMax));
                 allParticipants.setTimeMax(timeMax);
             }

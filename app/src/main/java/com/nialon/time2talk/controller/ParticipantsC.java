@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nialon.time2talk.R;
 import com.nialon.time2talk.view.ParticipantV;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class ParticipantsC
     public void add(ParticipantC participantC)
     {
         allParticipants.add(participantC);
+        participantC.getParticipantV().setIndex(allParticipants.indexOf(participantC));
     }
 
     public void update()
@@ -176,8 +179,9 @@ public class ParticipantsC
             ParticipantV pV;
             pV = (ParticipantV)v.getTag();
             pV.getParticipantLayout().setVisibility(View.GONE);
-            allParticipants.remove(this);
-            //allParticipants.remove(pV.getParticipantM().getId()-1);
+
+            allParticipants.remove(pV.getIndex());
+
         }
     };
 

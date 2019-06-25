@@ -33,6 +33,7 @@ public class ParticipantV
     private TextView tvDuration;
     private TextView tvPercentage;
     private ProgressBar progressBar;
+    private int index;
 
     public LinearLayout getParticipantLayout()
     {
@@ -198,5 +199,15 @@ public class ParticipantV
     public ParticipantM getParticipantM()
     {
         return model;
+    }
+
+    public void setIndex(int index)
+    {
+        this.index = index;
+    }
+
+    public int getIndex()
+    {
+        return index;
     }
 }
