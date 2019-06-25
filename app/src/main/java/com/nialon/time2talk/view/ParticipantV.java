@@ -1,10 +1,10 @@
 package com.nialon.time2talk.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.ContentLoadingProgressBar;
 
 import com.nialon.time2talk.R;
 import com.nialon.time2talk.controller.ParticipantsC;
@@ -40,7 +39,7 @@ public class ParticipantV
         return participantLayout;
     }
 
-    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Context context)
+    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context)
     {
         Typeface typeface;
         typeface = Typeface.createFromAsset(context.getAssets(), "LED.Font.ttf");
@@ -209,5 +208,10 @@ public class ParticipantV
     public int getIndex()
     {
         return index;
+    }
+
+    public Context getCtxt()
+    {
+        return ctxt;
     }
 }

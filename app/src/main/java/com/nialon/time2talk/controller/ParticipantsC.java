@@ -42,7 +42,9 @@ public class ParticipantsC
         for (int counter = 0; counter < allParticipants.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            //ParticipantV p  = (ParticipantV)allParticipants.get(counter);
             if (p.getParticipantV().isSelected())
+            //if (p.isSelected())
             {
                 p.getParticipantM().incDuration();
                 totalTime ++;
@@ -175,13 +177,13 @@ public class ParticipantsC
         @Override
         public void onClick(final View v)
         {
-            System.out.println("listener3" + v.getParent() );
+            System.out.println("listener3" + v.getParent().toString() );
             ParticipantV pV;
             pV = (ParticipantV)v.getTag();
             pV.getParticipantLayout().setVisibility(View.GONE);
-
-            allParticipants.remove(pV.getIndex());
-
+            System.out.println(pV.getIndex());
+            //allParticipants.remove(pV.getIndex());
+            allParticipants.remove(pV);
         }
     };
 

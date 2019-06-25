@@ -71,7 +71,11 @@ public class MainActivity extends AppCompatActivity
             {
                 allParticipants.update();
                 allParticipants.displayAll();
-
+                if (allParticipants.getCount()==0)
+                {
+                    LinearLayout lhelp = findViewById(R.id.layout_help);
+                    lhelp.setVisibility(View.VISIBLE);
+                }
                 handler.postDelayed(this, 1000);
             }
         };
