@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Ringtone;
 import android.view.Gravity;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -33,18 +34,19 @@ public class ParticipantV
     private TextView tvPercentage;
     private ProgressBar progressBar;
     private int index;
+    private Ringtone m_ringtone;
 
     public LinearLayout getParticipantLayout()
     {
         return participantLayout;
     }
 
-    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context)
+    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Ringtone ringtone)
     {
         Typeface typeface;
         typeface = Typeface.createFromAsset(context.getAssets(), "LED.Font.ttf");
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        lparams.setMargins(5,0,5,0);
+        lparams.setMargins(20,0,20,0);
         //lparams.gravity = Gravity.CENTER_HORIZONTAL;
         this.participantLayout = new LinearLayout(context);
 
@@ -54,6 +56,7 @@ public class ParticipantV
         this.model = participantM;
         this.allparticipants = allparticpants;
         this.ctxt = context;
+        this.m_ringtone = ringtone;
         this.selected = false;
 
         tvName=new TextView(context);
@@ -89,7 +92,6 @@ public class ParticipantV
         progressBar.setProgress(1, false);
         */
 
-
         //participantLayout.addView(progressBar);
 
         tvPercentage=new TextView(ctxt);
@@ -97,14 +99,11 @@ public class ParticipantV
         tvPercentage.setTextSize(24);
         participantLayout.addView(tvPercentage);
 
-
-
         LinearLayout.LayoutParams wparams1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f);
         LinearLayout.LayoutParams wparams2= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
         LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f);
         LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
-
 
         // Remove participant
         imgRemove = new ImageButton(ctxt);
@@ -136,6 +135,7 @@ public class ParticipantV
     }
     public void toggleselect()
     {
+        m_ringtone.stop();
         if (selected)
         {
             System.out.println("selected");
@@ -183,10 +183,19 @@ public class ParticipantV
         if (val > 60 * allparticipants.getTimeMax())
         {
             tvDuration.setTextColor(Color.RED);
+            tvName.setTextColor(Color.RED);
+            tvPercentage.setTextColor(Color.RED);
+            if (selected)
+            {
+                PlayNotification();
+            }
         }
         else
         {
             tvDuration.setTextColor(Color.GREEN);
+            tvName.setTextColor(Color.GREEN);
+            tvPercentage.setTextColor(Color.GREEN);
+            StopNotification();
         }
 
         tvDuration.setText((String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, val/60, val%60)));
@@ -213,5 +222,28 @@ public class ParticipantV
     public Context getCtxt()
     {
         return ctxt;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ParticipantV{" +
+                "tvName=" + tvName.getText() +
+                '}';
+    }
+
+    private void PlayNotification()
+    {
+        if (!m_ringtone.isPlaying())
+        {
+            m_ringtone.play();
+        }
+    }
+    private  void StopNotification()
+    {
+        if (!m_ringtone.isPlaying())
+        {
+            m_ringtone.stop();
+        }
     }
 }

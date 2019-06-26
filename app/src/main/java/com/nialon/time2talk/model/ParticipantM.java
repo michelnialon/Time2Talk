@@ -36,7 +36,7 @@ public class ParticipantM
     public void incDuration()
     {
         this.mDuration++;
-        System.out.println("Particpant " + id + " " + mDuration);
+        System.out.println(mName + " : " + mDuration + " secondes.");
     }
 
     @Override

@@ -3,13 +3,12 @@ package com.nialon.time2talk.controller;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.Ringtone;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nialon.time2talk.R;
 import com.nialon.time2talk.view.ParticipantV;
 
 import java.util.ArrayList;
@@ -19,21 +18,28 @@ public class ParticipantsC
     private ArrayList allParticipants;
     private int totalTime;
     private int timeMax;
-    private ParticipantC current;
+    private Boolean multipleSpeakers;
+    private Boolean soundsignal;
+    private String stringtone;
+    private Ringtone ringtone;
+
     private Context ctxt;
 
-    public ParticipantsC(int timeMax, Context context)
+    public ParticipantsC(int timeMax, Context context, boolean multipleSpeakers, boolean soundsignal, Ringtone ringtone)
     {
         allParticipants = new ArrayList<ParticipantC>();
         totalTime = 0;
         this.timeMax = timeMax;
+        this.multipleSpeakers = multipleSpeakers;
+        this.soundsignal = soundsignal;
+        this.ringtone = ringtone;
         this.ctxt = context;
     }
 
     public void add(ParticipantC participantC)
     {
         allParticipants.add(participantC);
-        participantC.getParticipantV().setIndex(allParticipants.indexOf(participantC));
+        participantC.getParticipantV().setIndex(allParticipants.size()-1);
     }
 
     public void update()
@@ -52,7 +58,7 @@ public class ParticipantsC
             }
         }
     }
-    public void unselectAll(ParticipantV participantV)
+    private void unselectAllExcept(ParticipantV participantV)
     {
         System.out.println("unselectall ");
         for (int counter = 0; counter < allParticipants.size(); counter++)
@@ -82,7 +88,7 @@ public class ParticipantsC
             p.getParticipantM().setDuration(0);
         }
         totalTime = 0;
-        unselectAll(null);
+        unselectAllExcept(null);
     }
 
     public int getTotal()
@@ -105,14 +111,14 @@ public class ParticipantsC
         this.timeMax = timeMax;
     }
 
-    public ParticipantC getCurrent()
+    public void setMultipleSpeakers(Boolean ms)
     {
-        return current;
+        this.multipleSpeakers = ms;
     }
 
-    public void setCurrent(ParticipantC current)
+    public void setSoundSignal(Boolean ss)
     {
-        this.current = current;
+        this.soundsignal = ss;
     }
 
     public View.OnClickListener getListener1()
@@ -163,7 +169,10 @@ public class ParticipantsC
             System.out.println("listener2" + v.getParent() );
 
             pV = (ParticipantV)v.getTag();
-            unselectAll(pV);
+            if (!multipleSpeakers)
+            {
+                unselectAllExcept(pV);
+            }
             pV.toggleselect();
         }
     };
@@ -177,18 +186,26 @@ public class ParticipantsC
         @Override
         public void onClick(final View v)
         {
-            System.out.println("listener3" + v.getParent().toString() );
             ParticipantV pV;
             pV = (ParticipantV)v.getTag();
+            System.out.println("Remove " + pV.toString() + " " + pV.getIndex());
             pV.getParticipantLayout().setVisibility(View.GONE);
-            System.out.println(pV.getIndex());
-            //allParticipants.remove(pV.getIndex());
-            allParticipants.remove(pV);
+            allParticipants.remove(pV.getIndex());
+            for (int i = pV.getIndex(); i < allParticipants.size(); i++)
+            {
+                ParticipantC pC = (ParticipantC)allParticipants.get(i);
+                pC.getParticipantV().setIndex(pC.getParticipantV().getIndex()-1);
+            }
         }
     };
 
     public int getCount()
     {
         return allParticipants.size();
+    }
+
+    public void setRingtone(Ringtone ringtone)
+    {
+        this.ringtone = ringtone;
     }
 }

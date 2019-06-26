@@ -2,7 +2,7 @@
 <PreferenceScreen  xmlns:android="http://schemas.android.com/apk/res/android">
         <PreferenceCategory
             android:key="pref_key_category_1"
-            android:title="Paramètres" >
+            android:title="Général" >
                 <EditTextPreference
                 android:inputType="number"
                 android:key="maxTime"
@@ -10,5 +10,22 @@
                 android:summary="Temps maximum de parole par personne pour la réunion."
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:title="Temps max (minutes) :" />
+                <CheckBoxPreference
+                    android:key="multiplespeakers"
+                    android:title="Plusieurs discussions"
+                    android:summary="Possibilité de parler à plusieurs pendant la réunion"
+                    />
+                <CheckBoxPreference
+                    android:key="soundsignal"
+                    android:title="Avertissement sonore"
+                    android:summary="Signal sonore lorsqu'un participant a dépassé son temps de parole?"
+                    />
+                <RingtonePreference
+                    android:key="ringtone"
+                    android:title="Mélodie à utiliser"
+                    android:showDefault="true"
+                    android:showSilent="true"
+                    android:summary="Sélection du signal d'avertissement de dépassement"
+                    />
         </PreferenceCategory>
 </PreferenceScreen>

@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     Typeface m_Typeface;
     private ParticipantsC allParticipants;
     private AdView adView;
+    private String stringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,9 +59,15 @@ public class MainActivity extends AppCompatActivity
         Context context = getApplicationContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
+
         String s = prefs.getString("maxTime", "15");
         timeMax = Integer.parseInt(s);
-        allParticipants = new ParticipantsC(timeMax, this);
+        Boolean multipleSpeakers = prefs.getBoolean("multiplespeakers", false);
+        Boolean soundsignal = prefs.getBoolean("soundsignal", false);
+        stringtone = prefs.getString("ringtone", "");
+        Uri ringtoneUri = Uri.parse(stringtone);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+        allParticipants = new ParticipantsC(timeMax, this, multipleSpeakers, soundsignal, ringtone);
 
         if (savedInstanceState != null)
         {
@@ -104,7 +114,6 @@ public class MainActivity extends AppCompatActivity
             if (key.equals("maxTime"))
             {
                 String s = sharedPreferences.getString("maxTime", "15");
-                Log.d("maxTime", s);
                 if (s != null)
                 {
                     timeMax = Integer.valueOf(s);
@@ -117,12 +126,36 @@ public class MainActivity extends AppCompatActivity
                 Log.d("maxTime", String.valueOf(timeMax));
                 allParticipants.setTimeMax(timeMax);
             }
+            if (key.equals("multiplespeakers"))
+            {
+                Boolean ms = sharedPreferences.getBoolean("multiplespeakers", false);
+
+                Log.d("multiplespealers", ms.toString());
+                allParticipants.setMultipleSpeakers(ms);
+            }
+            if (key.equals("soundsignal"))
+            {
+                Boolean ms = sharedPreferences.getBoolean("soundsignal", false);
+
+                Log.d("soundsignal", ms.toString());
+                allParticipants.setSoundSignal(ms);
+            }
+            if (key.equals("ringtone"))
+            {
+                String rt = sharedPreferences.getString("ringtone", "");
+
+                Log.d("ringtone", rt.toString());
+                Uri ringtoneUri = Uri.parse(rt);
+                Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+                allParticipants.setRingtone(ringtone);
+            }
         }
     };
     public void mnuPrefs()
     {
-        Intent i = new Intent(this, appPreferencesActivity.class);
-        startActivity(i);
+        Intent intent = new Intent(this, appPreferencesActivity.class);
+
+        startActivity(intent);
     }
 
     public void addItem(View v)
@@ -134,7 +167,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
         ParticipantM participantM = new ParticipantM(getString(R.string.initvalue3)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
-        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this);
+        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, stringtone);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
         allParticipants.add(participantC);
