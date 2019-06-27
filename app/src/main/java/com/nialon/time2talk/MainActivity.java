@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private ParticipantsC allParticipants;
     private AdView adView;
     private String stringtone;
+    private Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,9 +48,13 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("fun", "onCreate");
         setContentView(R.layout.activity_main);
-        m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
+        //m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
+        m_Typeface = Typeface.createFromAsset(this.getAssets(), "led_counter-7.ttf");
+
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        //TextView textView =findViewById(R.id.tvhelp);
+        //textView.setTypeface(m_Typeface);
         adView = findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
 //        adView.setAdSize(AdSize.BANNER);
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         Boolean soundsignal = prefs.getBoolean("soundsignal", false);
         stringtone = prefs.getString("ringtone", "");
         Uri ringtoneUri = Uri.parse(stringtone);
-        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
         allParticipants = new ParticipantsC(timeMax, this, multipleSpeakers, soundsignal, ringtone);
 
         if (savedInstanceState != null)
@@ -167,7 +173,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
         ParticipantM participantM = new ParticipantM(getString(R.string.initvalue3)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
-        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, stringtone);
+        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, ringtone, m_Typeface);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
         allParticipants.add(participantC);

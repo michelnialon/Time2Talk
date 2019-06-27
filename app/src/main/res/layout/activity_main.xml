@@ -58,7 +58,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:text="Click on + to add participant"
-                    android:textSize="32sp" />
+                    android:textSize="28sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

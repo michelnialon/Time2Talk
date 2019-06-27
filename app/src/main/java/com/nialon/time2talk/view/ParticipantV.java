@@ -35,16 +35,15 @@ public class ParticipantV
     private ProgressBar progressBar;
     private int index;
     private Ringtone m_ringtone;
+    private Typeface m_Typeface;
 
     public LinearLayout getParticipantLayout()
     {
         return participantLayout;
     }
 
-    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Ringtone ringtone)
+    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Ringtone ringtone,    Typeface typeface)
     {
-        Typeface typeface;
-        typeface = Typeface.createFromAsset(context.getAssets(), "LED.Font.ttf");
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         lparams.setMargins(20,0,20,0);
         //lparams.gravity = Gravity.CENTER_HORIZONTAL;
@@ -57,6 +56,7 @@ public class ParticipantV
         this.allparticipants = allparticpants;
         this.ctxt = context;
         this.m_ringtone = ringtone;
+        this.m_Typeface = typeface;
         this.selected = false;
 
         tvName=new TextView(context);
@@ -79,7 +79,7 @@ public class ParticipantV
         tvDuration = new TextView(ctxt);
         tvDuration.setText(R.string.initvalue2);
         tvDuration.setTypeface(typeface);
-        tvDuration.setTextSize(30);
+        tvDuration.setTextSize(26);
         tvDuration.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_green_light));
         participantLayout.addView(tvDuration);
 
@@ -96,13 +96,13 @@ public class ParticipantV
 
         tvPercentage=new TextView(ctxt);
         tvPercentage.setText(R.string.initvalue1);
-        tvPercentage.setTextSize(24);
+        tvPercentage.setTextSize(18);
         participantLayout.addView(tvPercentage);
 
         LinearLayout.LayoutParams wparams1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f);
         LinearLayout.LayoutParams wparams2= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
-        LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-        LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f);
+        LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.2f);
+        LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);
         LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
 
         // Remove participant
@@ -122,6 +122,7 @@ public class ParticipantV
         tvPercentage.setLayoutParams(wparams4);
         //progressBar.setLayoutParams(wparams4);
         imgRemove.setLayoutParams(wparams5);
+        tvDuration.setTypeface(m_Typeface);
     }
 
     public TextView getTvName()
@@ -159,14 +160,14 @@ public class ParticipantV
         System.out.println("select");
         selected = true;
 
-        tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
+        //tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
         imgStartStop.setImageResource(android.R.drawable.ic_media_pause);
     }
     public void unselect()
     {
         System.out.println("unselect");
         selected = false;
-        tvName.setTypeface(null, Typeface.NORMAL);
+        //tvName.setTypeface(null, Typeface.NORMAL);
         this.imgStartStop.setImageResource(android.R.drawable.ic_media_play);
     }
 
@@ -179,6 +180,9 @@ public class ParticipantV
     {
         int val = model.getDuration();
         int tot = allparticipants.getTotal();
+
+        System.out.println(m_Typeface.toString());
+        //tvDuration.setTypeface(m_Typeface);
         tot = (tot==0?1:tot); // to avoid divide by 0
         if (val > 60 * allparticipants.getTimeMax())
         {
