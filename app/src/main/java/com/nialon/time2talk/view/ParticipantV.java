@@ -160,14 +160,14 @@ public class ParticipantV
         System.out.println("select");
         selected = true;
 
-        //tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
+        tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
         imgStartStop.setImageResource(android.R.drawable.ic_media_pause);
     }
     public void unselect()
     {
         System.out.println("unselect");
         selected = false;
-        //tvName.setTypeface(null, Typeface.NORMAL);
+        tvName.setTypeface(null, Typeface.NORMAL);
         this.imgStartStop.setImageResource(android.R.drawable.ic_media_play);
     }
 
