@@ -2,10 +2,12 @@ package com.nialon.time2talk.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Ringtone;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -84,15 +86,13 @@ public class ParticipantV
         participantLayout.addView(tvDuration);
 
         // Percentage
-        /*
-        progressBar = new ProgressBar(ctxt);
+
+        progressBar = new ProgressBar(ctxt, null, android.R.attr.progressBarStyleHorizontal);
         progressBar.setIndeterminate(false);
-        progressBar.setVisibility(View.VISIBLE);
         progressBar.setMax(100);
         progressBar.setProgress(1, false);
-        */
 
-        //participantLayout.addView(progressBar);
+        participantLayout.addView(progressBar);
 
         tvPercentage=new TextView(ctxt);
         tvPercentage.setText(R.string.initvalue1);
@@ -104,6 +104,7 @@ public class ParticipantV
         LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.2f);
         LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);
         LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
+        LinearLayout.LayoutParams wparams6= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.4f);
 
         // Remove participant
         imgRemove = new ImageButton(ctxt);
@@ -120,9 +121,15 @@ public class ParticipantV
         tvDuration.setGravity(Gravity.CENTER_HORIZONTAL);
         tvDuration.setLayoutParams(wparams3);
         tvPercentage.setLayoutParams(wparams4);
-        //progressBar.setLayoutParams(wparams4);
+        progressBar.setLayoutParams(wparams6);
         imgRemove.setLayoutParams(wparams5);
         tvDuration.setTypeface(m_Typeface);
+        int orientation = ctxt.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            showProgressBar();
+        } else {
+            hideProgressBar();
+        }
     }
 
     public TextView getTvName()
@@ -140,7 +147,7 @@ public class ParticipantV
         if (selected)
         {
             System.out.println("selected");
-            Toast.makeText(ctxt, "Participant " + tvName.getText() + " does not talk anymore.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctxt, tvName.getText() + " does not talk anymore.", Toast.LENGTH_LONG).show();
             selected = false;
             tvName.setTypeface(null, Typeface.NORMAL);
             this.imgStartStop.setImageResource(android.R.drawable.ic_media_play);
@@ -148,7 +155,7 @@ public class ParticipantV
         else
         {
             System.out.println("not selected");
-            Toast.makeText(ctxt, "Participant " + tvName.getText() + " is starting to talk.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctxt, tvName.getText() + " is starting to talk.", Toast.LENGTH_LONG).show();
             selected = true;
 
             tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
@@ -204,8 +211,7 @@ public class ParticipantV
 
         tvDuration.setText((String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, val/60, val%60)));
         tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
-     //   progressBar.setProgress((val*100)/tot);
-     //   progressBar.setProgress(50);
+        progressBar.setProgress((val*100)/tot);
     }
 
     public ParticipantM getParticipantM()
@@ -249,5 +255,13 @@ public class ParticipantV
         {
             m_ringtone.stop();
         }
+    }
+    public void showProgressBar()
+    {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    public void hideProgressBar()
+    {
+        progressBar.setVisibility(View.GONE);
     }
 }

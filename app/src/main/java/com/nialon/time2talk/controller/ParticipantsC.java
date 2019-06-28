@@ -79,6 +79,22 @@ public class ParticipantsC
             p.getParticipantV().displayDuration();
         }
     }
+    public void showProgressBar(Boolean visible)
+    {
+        //System.out.println("displayAll ");
+        for (int counter = 0; counter < allParticipants.size(); counter++)
+        {
+            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            if (visible)
+            {
+                p.getParticipantV().showProgressBar();
+            }
+            else
+            {
+                p.getParticipantV().hideProgressBar();
+            }
+        }
+    }
     public void reset()
     {
         System.out.println("reset ");
