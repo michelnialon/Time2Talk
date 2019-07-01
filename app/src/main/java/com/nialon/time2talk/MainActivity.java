@@ -219,5 +219,19 @@ public class MainActivity extends AppCompatActivity
         });
         builder.show();
     }
+    public void shareData(View v)
+    {
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/html");
+        //share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+        // Add data to the intent, the receiving app will decide
+        // what to do with it.
+        share.putExtra(Intent.EXTRA_SUBJECT, "Information sur la réunion");
+        share.putExtra(Intent.EXTRA_TEXT, allParticipants.getInformations());
+        share.putExtra(Intent.EXTRA_HTML_TEXT, allParticipants.getInformationsHTML());
+
+        startActivity(Intent.createChooser(share, "Envoyer les informations"));
+    }
 }
 

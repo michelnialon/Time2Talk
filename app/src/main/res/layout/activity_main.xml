@@ -42,6 +42,14 @@
                     android:contentDescription="@string/image"
                     android:onClick="addItem"
                     app:srcCompat="@android:drawable/ic_input_add" />
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/image"
+                    android:onClick="shareData"
+                    app:srcCompat="@android:drawable/ic_menu_share" />
             </LinearLayout>
 
             <LinearLayout

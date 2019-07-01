@@ -107,6 +107,42 @@ public class ParticipantsC
         unselectAllExcept(null);
     }
 
+    public String getInformations()
+    {
+        String infos = "";
+        System.out.println("getInformations ");
+
+        for (int counter = 0; counter < allParticipants.size(); counter++)
+        {
+            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            infos += p.getParticipantM().getName();
+            infos += " : ";
+            infos += p.getParticipantM().getDuration();
+            infos += "\n";
+        }
+        return infos;
+    }
+    public String getInformationsHTML()
+    {
+        String infos = "";
+        System.out.println("getInformations ");
+
+        infos += "<table border=0>";
+
+        for (int counter = 0; counter < allParticipants.size(); counter++)
+        {
+            infos += "<tr>";
+            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            infos += "<td>";
+            infos += p.getParticipantM().getName();
+            infos += "</td><td>";
+            infos += p.getParticipantM().getDuration();
+            infos += "</td></tr>";
+        }
+        infos += "</table>";
+        return infos;
+    }
+
     public int getTotal()
     {
         return totalTime;
