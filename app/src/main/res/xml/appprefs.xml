@@ -2,30 +2,30 @@
 <PreferenceScreen  xmlns:android="http://schemas.android.com/apk/res/android">
         <PreferenceCategory
             android:key="pref_key_category_1"
-            android:title="Général" >
+            android:title="@string/general" >
                 <EditTextPreference
                 android:inputType="number"
                 android:key="maxTime"
                 android:defaultValue="10"
-                android:summary="Temps maximum de parole par personne pour la réunion."
+                android:summary="@string/tempsmaxdesc"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:title="Temps max (minutes) :" />
+                android:title="@string/tempsmax" />
                 <CheckBoxPreference
                     android:key="multiplespeakers"
-                    android:title="Plusieurs discussions"
-                    android:summary="Possibilité de parler à plusieurs pendant la réunion"
+                    android:title="@string/multiplespeaker"
+                    android:summary="@string/multiplespeakersdesc"
                     />
                 <CheckBoxPreference
                     android:key="soundsignal"
-                    android:title="Avertissement sonore"
-                    android:summary="Signal sonore lorsqu'un participant a dépassé son temps de parole?"
+                    android:title="@string/soundwarning"
+                    android:summary="@string/soundwarningdesc"
                     />
                 <RingtonePreference
                     android:key="ringtone"
-                    android:title="Mélodie à utiliser"
+                    android:title="@string/melodytouse"
                     android:showDefault="true"
                     android:showSilent="true"
-                    android:summary="Sélection du signal d'avertissement de dépassement"
+                    android:summary="@string/melodytousedesc"
                     />
         </PreferenceCategory>
 </PreferenceScreen>

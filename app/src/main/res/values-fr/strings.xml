@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Time2Talk</string>
+    <string name="clicktoadd">Cliquer sur + pour ajouter un participant</string>
+    <string name="datareset">Les données ont été remises à zéro</string>
+    <string name="image">Image</string>
+    <string name="initvalue1">0%</string>
+    <string name="initvalue2">0:00:00</string>
+    <string name="initvalue3">Participant</string>
+    <string name="namemodified">Le nom du participant a été modifié</string>
+    <string name="parameters">Paramètres</string>
+    <string name="participantremove">Participant supprimé :</string>
+    <string name="resetconfirmation">Voulez-vous vraiment remettre toutes les données à zéro ?</string>
+    <string name="str_advertisement">Publicité</string>
+    <string name="total">Total</string>
+    <string name="general">Général</string>
+    <string name="tempsmax">Temps max (minutes) :</string>
+    <string name="tempsmaxdesc">Temps maximum de parole par personne pour la réunion.</string>
+    <string name="multiplespeaker">Plusieurs discussions</string>
+    <string name="multiplespeakersdesc">Possibilité de parler à plusieurs pendant la réunion</string>
+    <string name="soundwarning">Avertissement sonore</string>
+    <string name="soundwarningdesc">Signal sonore lorsqu\'un participant a dépassé son temps de parole?</string>
+    <string name="melodytouse">Mélodie à utiliser</string>
+    <string name="melodytousedesc">Sélection du signal d\'avertissement de dépassement</string>
+    <string name="minutes">minute(s)</string>
+    <string name="maxduration">Durée maximale</string>
+    <string name="sendinfos">Envoyer les informations</string>
+    <string name="meetinginfos">Information sur la réunion</string>
+    <string name="confirmdatazero">Voulez-vous vraiment supprimer les données ?</string>
+    <string name="dataset2zero">Les données ont été remises à zéro</string>
+    <string name="datanotset2zero">Les données n\'ont pas été remises à zéro</string>
+    <string name="participant">Participant</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="modification">Modification</string>
+    <string name="entername">Veuillez saisir le nom</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="ok">OK</string>
+</resources>

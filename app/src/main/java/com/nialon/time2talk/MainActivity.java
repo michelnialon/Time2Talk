@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity
             {
                 String rt = sharedPreferences.getString("ringtone", "");
 
-                Log.d("ringtone", rt.toString());
+                Log.d("ringtone", rt);
                 Uri ringtoneUri = Uri.parse(rt);
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
                 allParticipants.setRingtone(ringtone);
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity
 
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
-        ParticipantM participantM = new ParticipantM(getString(R.string.initvalue3)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
+        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
         ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, ringtone, m_Typeface);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
@@ -196,25 +196,25 @@ public class MainActivity extends AppCompatActivity
     public void resetData(View v)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmation");
+        builder.setTitle(getString(R.string.confirmation));
         builder.setMessage(getString(R.string.resetconfirmation));
         builder.setCancelable(false);
-        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener()
+        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
                 allParticipants.reset();
-                Toast.makeText(getApplicationContext(), getString(R.string.datareset), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.dataset2zero), Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNegativeButton("Non", new DialogInterface.OnClickListener()
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                Toast.makeText(getApplicationContext(), "Données non remises à zéro", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.datanotset2zero), Toast.LENGTH_SHORT).show();
             }
         });
         builder.show();
@@ -227,11 +227,11 @@ public class MainActivity extends AppCompatActivity
 
         // Add data to the intent, the receiving app will decide
         // what to do with it.
-        share.putExtra(Intent.EXTRA_SUBJECT, "Information sur la réunion");
+        share.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.meetinginfos));
         share.putExtra(Intent.EXTRA_TEXT, allParticipants.getInformations());
         share.putExtra(Intent.EXTRA_HTML_TEXT, allParticipants.getInformationsHTML());
 
-        startActivity(Intent.createChooser(share, "Envoyer les informations"));
+        startActivity(Intent.createChooser(share, getResources().getString(R.string.sendinfos)));
     }
 }
 

@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/mnuPrefs"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:title="Paramètres" />
+        android:title="@string/parameters" />
 </menu>
 

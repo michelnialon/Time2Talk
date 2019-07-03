@@ -30,7 +30,7 @@ public class appPreferencesActivity extends PreferenceActivity
             addPreferencesFromResource(R.xml.appprefs);
             String mtime = this.findPreference("pref_key_category_1").getSharedPreferences().getString("maxTime", "15");
 
-            this.findPreference("maxTime").setTitle("Durée maximale" + " (" + mtime  + " minute.s" + ")");
+            this.findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + mtime  + getResources().getString(R.string.minutes) + ")");
             Boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
             this.findPreference("ringtone").setEnabled(ssignal);
             this.findPreference("soundsignal").setOnPreferenceChangeListener(
@@ -52,7 +52,7 @@ public class appPreferencesActivity extends PreferenceActivity
                         public boolean onPreferenceChange(Preference preference,
                                                           Object newValue) {
                             System.out.println("onPreferenceChange"+ "maxTime changed");
-                            findPreference("maxTime").setTitle("Durée maximale" + " (" + (String)newValue  + " minute.s" + ")");
+                            findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + newValue  + getResources().getString(R.string.minutes) + ")");
                             return true;
                         }
                     }
@@ -68,7 +68,7 @@ public class appPreferencesActivity extends PreferenceActivity
                             Uri ringtoneUri = Uri.parse((String)newValue);
                             Ringtone ringtone = RingtoneManager.getRingtone(getContext(), ringtoneUri);
                             String rtname = ringtone.getTitle(getContext());
-                            findPreference("ringtone").setTitle("Mélodie à utiliser " + " (" + rtname  +  ")");
+                            findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse) + " (" + rtname  +  ")");
 
                             return true;
                         }

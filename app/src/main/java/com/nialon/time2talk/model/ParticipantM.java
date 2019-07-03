@@ -43,8 +43,8 @@ public class ParticipantM
     public String toString()
     {
         return "ParticipantM{" +
-                "mName='" + mName + '\'' +
-                ", mDuration=" + mDuration +
+                "Name='" + mName + '\'' +
+                ", Duration=" + mDuration +
                 '}';
     }
 

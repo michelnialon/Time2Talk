@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nialon.time2talk.R;
 import com.nialon.time2talk.view.ParticipantV;
 
 import java.util.ArrayList;
@@ -189,18 +190,18 @@ public class ParticipantsC
             edtText.setPaintFlags(0);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
-            builder.setTitle("Modification");
-            builder.setMessage("Veuillez saisir le nom " );
+            builder.setTitle(ctxt.getResources().getString(R.string.modification));
+            builder.setMessage(ctxt.getResources().getString(R.string.entername));
             builder.setCancelable(true);
             builder.setView(edtText);
-            builder.setNeutralButton("OK", new DialogInterface.OnClickListener()
+            builder.setNeutralButton(ctxt.getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
             {
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
                     ((TextView)v).setText(edtText.getText());
                     //participantM.setName(edtText.getText().toString());
-                    Toast.makeText(ctxt, "Le nom a été modifié" + " :" +edtText.getText() , Toast.LENGTH_LONG).show();
+                    Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();
                 }
             });
             builder.show();
