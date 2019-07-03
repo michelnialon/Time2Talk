@@ -30,7 +30,7 @@ public class appPreferencesActivity extends PreferenceActivity
             addPreferencesFromResource(R.xml.appprefs);
             String mtime = this.findPreference("pref_key_category_1").getSharedPreferences().getString("maxTime", "15");
 
-            this.findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + mtime  + getResources().getString(R.string.minutes) + ")");
+            this.findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + mtime  + " " + getResources().getString(R.string.minutes) + ")");
             Boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
             this.findPreference("ringtone").setEnabled(ssignal);
             this.findPreference("soundsignal").setOnPreferenceChangeListener(

@@ -194,8 +194,8 @@ public class ParticipantV
         if (val > 60 * allparticipants.getTimeMax())
         {
             tvDuration.setTextColor(Color.RED);
-            tvName.setTextColor(Color.RED);
-            tvPercentage.setTextColor(Color.RED);
+            //tvName.setTextColor(Color.RED);
+            //tvPercentage.setTextColor(Color.RED);
             if (selected)
             {
                 PlayNotification();
@@ -203,9 +203,9 @@ public class ParticipantV
         }
         else
         {
-            tvDuration.setTextColor(Color.GREEN);
-            tvName.setTextColor(Color.GREEN);
-            tvPercentage.setTextColor(Color.GREEN);
+            tvDuration.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_green_light));
+            //tvName.setTextColor(Color.GREEN);
+            //tvPercentage.setTextColor(Color.GREEN);
             StopNotification();
         }
 
