@@ -23,6 +23,7 @@ public class ParticipantsC
     private Boolean soundsignal;
     private String stringtone;
     private Ringtone ringtone;
+    private boolean landscape;
 
     private Context ctxt;
 
@@ -77,7 +78,7 @@ public class ParticipantsC
         for (int counter = 0; counter < allParticipants.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipants.get(counter);
-            p.getParticipantV().displayDuration();
+            p.getParticipantV().displayDuration(landscape);
         }
     }
     public void showProgressBar(Boolean visible)
@@ -188,6 +189,7 @@ public class ParticipantsC
             final EditText edtText = new EditText(ctxt);
             edtText.setText(((TextView)v).getText());
             edtText.setPaintFlags(0);
+            edtText.setSingleLine();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
             builder.setTitle(ctxt.getResources().getString(R.string.modification));
@@ -239,16 +241,38 @@ public class ParticipantsC
         @Override
         public void onClick(final View v)
         {
-            ParticipantV pV;
-            pV = (ParticipantV)v.getTag();
-            System.out.println("Remove " + pV.toString() + " " + pV.getIndex());
-            pV.getParticipantLayout().setVisibility(View.GONE);
-            allParticipants.remove(pV.getIndex());
-            for (int i = pV.getIndex(); i < allParticipants.size(); i++)
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
+            builder.setTitle(ctxt.getResources().getString(R.string.confirmation));
+            builder.setMessage(ctxt.getResources().getString(R.string.confirmparticipantsupression));
+            builder.setCancelable(false);
+            builder.setPositiveButton(ctxt.getResources().getString(R.string.yes), new DialogInterface.OnClickListener()
             {
-                ParticipantC pC = (ParticipantC)allParticipants.get(i);
-                pC.getParticipantV().setIndex(pC.getParticipantV().getIndex()-1);
-            }
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    ParticipantV pV;
+                    pV = (ParticipantV)v.getTag();
+                    System.out.println("Remove " + pV.toString() + " " + pV.getIndex());
+                    pV.getParticipantLayout().setVisibility(View.GONE);
+                    allParticipants.remove(pV.getIndex());
+                    for (int i = pV.getIndex(); i < allParticipants.size(); i++)
+                    {
+                        ParticipantC pC = (ParticipantC)allParticipants.get(i);
+                        pC.getParticipantV().setIndex(pC.getParticipantV().getIndex()-1);
+                    }
+                   Toast.makeText(ctxt, ctxt.getResources().getString(R.string.participantsuppressed), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            builder.setNegativeButton(ctxt.getResources().getString(R.string.no), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+
+                }
+            });
+            builder.show();
         }
     };
 
@@ -260,5 +284,9 @@ public class ParticipantsC
     public void setRingtone(Ringtone ringtone)
     {
         this.ringtone = ringtone;
+    }
+
+    public void setLandscape(boolean landscape) {
+        this.landscape = landscape;
     }
 }

@@ -166,12 +166,14 @@ public class MainActivity extends AppCompatActivity
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             allParticipants.showProgressBar(true);
+            allParticipants.setLandscape(true);
             //adView.setAdSize(AdSize.FULL_BANNER);
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
             //adView.setAdSize(AdSize.BANNER);
             allParticipants.showProgressBar(false);
+            allParticipants.setLandscape(false);
         }
     }
     public void mnuPrefs()
@@ -190,6 +192,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
         ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
+        //participantM.setDuration(7200);
         ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, ringtone, m_Typeface);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());

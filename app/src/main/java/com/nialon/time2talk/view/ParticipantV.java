@@ -90,6 +90,7 @@ public class ParticipantV
         progressBar = new ProgressBar(ctxt, null, android.R.attr.progressBarStyleHorizontal);
         progressBar.setIndeterminate(false);
         progressBar.setMax(100);
+        progressBar.getProgressDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
         progressBar.setProgress(1, false);
 
         participantLayout.addView(progressBar);
@@ -117,6 +118,10 @@ public class ParticipantV
 
         // todo : revoir  le dimensionnement des view
         tvName.setLayoutParams(wparams1);
+        wparams1.gravity =Gravity.CENTER_VERTICAL;
+        wparams3.gravity =Gravity.CENTER_VERTICAL;
+        wparams4.gravity =Gravity.CENTER_VERTICAL;
+        wparams6.gravity =Gravity.CENTER_VERTICAL;
         imgStartStop.setLayoutParams(wparams2);
         tvDuration.setGravity(Gravity.CENTER_HORIZONTAL);
         tvDuration.setLayoutParams(wparams3);
@@ -147,7 +152,7 @@ public class ParticipantV
         if (selected)
         {
             System.out.println("selected");
-            Toast.makeText(ctxt, tvName.getText() + " does not talk anymore.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctxt, tvName.getText() + ctxt.getResources().getString(R.string.talknomore), Toast.LENGTH_LONG).show();
             selected = false;
             tvName.setTypeface(null, Typeface.NORMAL);
             this.imgStartStop.setImageResource(android.R.drawable.ic_media_play);
@@ -183,7 +188,7 @@ public class ParticipantV
         return selected;
     }
 
-    public void displayDuration()
+    public void displayDuration(boolean landscape)
     {
         int val = model.getDuration();
         int tot = allparticipants.getTotal();
@@ -209,9 +214,16 @@ public class ParticipantV
             StopNotification();
         }
 
-        tvDuration.setText((String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, val/60, val%60)));
+        tvDuration.setText(formatDuration(val, landscape));
         tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
         progressBar.setProgress((val*100)/tot);
+    }
+    private String formatDuration(int val, boolean hour2d)
+    {
+        if (hour2d)
+            return String.format(Locale.FRANCE,"%02d:%02d:%02d", val/3600, (val%3600)/60, val%60);
+        else
+            return String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, (val%3600)/60, val%60);
     }
 
     public ParticipantM getParticipantM()

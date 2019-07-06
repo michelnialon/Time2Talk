@@ -36,4 +36,8 @@
     <string name="entername">Veuillez saisir le nom</string>
     <string name="confirmation">Confirmation</string>
     <string name="ok">OK</string>
+    <string name="talknomore">" is not talking anymore."</string>
+    <string name="starttalking">" is starting to talk."</string>
+    <string name="participantsuppressed">Participant supprimé.</string>
+    <string name="confirmparticipantsupression">Etes-vous sûr de vouloir supprimer ce participant ?</string>
 </resources>
