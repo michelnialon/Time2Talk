@@ -13,6 +13,7 @@ import com.nialon.time2talk.R;
 import com.nialon.time2talk.view.ParticipantV;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ParticipantsC
 {
@@ -117,9 +118,11 @@ public class ParticipantsC
         for (int counter = 0; counter < allParticipants.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipants.get(counter);
-            infos += p.getParticipantM().getName();
-            infos += " : ";
-            infos += p.getParticipantM().getDuration();
+            infos += String.format(Locale.FRANCE,"%-20.20s : %s (%s)", p.getParticipantV().getParticipantM().getName(),
+                    p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true),
+                    p.getParticipantV().getPercentage()
+            );
+
             infos += "\n";
         }
         return infos;
@@ -136,10 +139,12 @@ public class ParticipantsC
             infos += "<tr>";
             ParticipantC p  = (ParticipantC)allParticipants.get(counter);
             infos += "<td>";
-            infos += p.getParticipantM().getName();
+            infos += String.format(Locale.FRANCE,"%-20s", p.getParticipantV().getParticipantM().getName());
             infos += "</td><td>";
-            infos += p.getParticipantM().getDuration();
-            infos += "</td></tr>";
+            infos += p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true);
+            infos += "</td>";
+            infos += "<td>" + p.getParticipantV().getPercentage() + "/td>";
+            infos += "</tr>";
         }
         infos += "</table>";
         return infos;
@@ -202,7 +207,8 @@ public class ParticipantsC
                 public void onClick(DialogInterface dialog, int which)
                 {
                     ((TextView)v).setText(edtText.getText());
-                    //participantM.setName(edtText.getText().toString());
+                    ((ParticipantV)v.getTag()).getParticipantM().setName(edtText.getText().toString());
+                    //getparticipantM.setName(edtText.getText().toString());
                     Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();
                 }
             });

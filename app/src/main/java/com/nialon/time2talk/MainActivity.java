@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         //textView.setTypeface(m_Typeface);
         adView = findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.setAdSize(AdSize.BANNER);
+        //adView.setAdSize(AdSize.BANNER);
 //        adView.setAdUnitId("ca-app-pub-3940256099942544~3347511713");
 
         adView.loadAd(adRequest);

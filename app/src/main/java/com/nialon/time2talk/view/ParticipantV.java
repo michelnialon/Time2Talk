@@ -218,12 +218,19 @@ public class ParticipantV
         tvPercentage.setText(String.format(Locale.FRANCE, "%3d%%", (val*100)/tot));
         progressBar.setProgress((val*100)/tot);
     }
-    private String formatDuration(int val, boolean hour2d)
+    public String formatDuration(int val, boolean hour2d)
     {
         if (hour2d)
             return String.format(Locale.FRANCE,"%02d:%02d:%02d", val/3600, (val%3600)/60, val%60);
         else
             return String.format(Locale.FRANCE,"%1d:%02d:%02d", val/3600, (val%3600)/60, val%60);
+    }
+    public String getPercentage()
+    {
+        int tot = allparticipants.getTotal();
+        int val = model.getDuration();
+        tot = (tot==0?1:tot); // to avoid divide by 0
+        return String.format(Locale.FRANCE, "%3d%%", (val*100)/tot);
     }
 
     public ParticipantM getParticipantM()
