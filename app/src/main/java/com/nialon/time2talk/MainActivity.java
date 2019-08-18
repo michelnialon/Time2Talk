@@ -6,26 +6,27 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
@@ -34,11 +35,11 @@ import com.nialon.time2talk.controller.ParticipantsC;
 import com.nialon.time2talk.model.ParticipantM;
 import com.nialon.time2talk.view.ParticipantV;
 
-// todo: possibility to talk more than one participant at a time
+// todo: possibility to talk more than one attendee at a time
 public class MainActivity extends AppCompatActivity
 {
-    Integer timeMax=6000;
-    Typeface m_Typeface;
+    private Integer timeMax=6000;
+    private Typeface m_Typeface;
     private ParticipantsC allParticipants;
     private AdView adView;
     private String stringtone;
@@ -64,6 +65,13 @@ public class MainActivity extends AppCompatActivity
 //        adView.setAdUnitId("ca-app-pub-3940256099942544~3347511713");
 
         adView.loadAd(adRequest);
+
+        // set title bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.mipmap.ic_ttt_round);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 
         Context context = getApplicationContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -117,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
-    SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+    final private SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if (key.equals("maxTime"))
@@ -177,7 +185,7 @@ public class MainActivity extends AppCompatActivity
             allParticipants.setLandscape(false);
         }
     }
-    public void mnuPrefs()
+    private  void mnuPrefs()
     {
         Intent intent = new Intent(this, appPreferencesActivity.class);
 
@@ -192,7 +200,7 @@ public class MainActivity extends AppCompatActivity
 
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
-        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + Integer.toString(allParticipants.getCount()+1), allParticipants.getCount()+1);
+        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getCount() + 1), allParticipants.getCount()+1);
         //participantM.setDuration(7200);
         ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, ringtone, m_Typeface);
         ParticipantC participantC = new ParticipantC(participantM, participantV);

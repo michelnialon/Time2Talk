@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.view.MenuItem;
 
 public class appPreferencesActivity extends PreferenceActivity
 
@@ -31,7 +30,7 @@ public class appPreferencesActivity extends PreferenceActivity
             String mtime = this.findPreference("pref_key_category_1").getSharedPreferences().getString("maxTime", "15");
 
             this.findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + mtime  + " " + getResources().getString(R.string.minutes) + ")");
-            Boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
+            boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
             this.findPreference("ringtone").setEnabled(ssignal);
             this.findPreference("soundsignal").setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
@@ -52,7 +51,7 @@ public class appPreferencesActivity extends PreferenceActivity
                         public boolean onPreferenceChange(Preference preference,
                                                           Object newValue) {
                             System.out.println("onPreferenceChange"+ "maxTime changed");
-                            findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + newValue  + getResources().getString(R.string.minutes) + ")");
+                            findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + newValue  +  " " + getResources().getString(R.string.minutes) + ")");
                             return true;
                         }
                     }
