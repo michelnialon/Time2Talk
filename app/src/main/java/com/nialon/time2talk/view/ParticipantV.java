@@ -160,7 +160,7 @@ public class ParticipantV
         else
         {
             System.out.println("not selected");
-            Toast.makeText(ctxt, tvName.getText() + " is starting to talk.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ctxt, tvName.getText() + ctxt.getResources().getString(R.string.starttalking), Toast.LENGTH_LONG).show();
             selected = true;
 
             tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
