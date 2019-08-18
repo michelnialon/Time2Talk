@@ -41,7 +41,12 @@ public class ParticipantsC
 
     public void add(ParticipantC participantC)
     {
-        allParticipants.add(participantC);
+        try {
+            allParticipants.add(participantC);
+        }
+        catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+        }
         participantC.getParticipantV().setIndex(allParticipants.size()-1);
     }
 

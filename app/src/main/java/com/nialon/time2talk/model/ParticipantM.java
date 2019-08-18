@@ -40,6 +40,7 @@ public class ParticipantM
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public String toString()
     {
         return "ParticipantM{" +

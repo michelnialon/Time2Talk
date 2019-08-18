@@ -37,6 +37,6 @@
     <string name="ok">OK</string>
     <string name="talknomore">" ne parle plus."</string>
     <string name="starttalking">" commence à parler."</string>
-    <string name="participantsuppressed">Participant supressed.</string>
+    <string name="participantsuppressed">Participant suppressed.</string>
     <string name="confirmparticipantsupression">Are you sure you want to remove this participant ?</string>
 </resources>

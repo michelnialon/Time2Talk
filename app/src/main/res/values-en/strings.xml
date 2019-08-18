@@ -38,6 +38,6 @@
     <string name="ok">OK</string>
     <string name="talknomore">" is not talking anymore."</string>
     <string name="starttalking">" is starting to talk."</string>
-    <string name="participantsuppressed">Participant supressed.</string>
+    <string name="participantsuppressed">Participant suppressed.</string>
     <string name="confirmparticipantsupression">Are you sure you want to remove this participant ?</string>
 </resources>
