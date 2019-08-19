@@ -84,7 +84,7 @@ public class ParticipantsC
         for (int counter = 0; counter < allParticipants.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipants.get(counter);
-            p.getParticipantV().displayDuration(landscape);
+            p.getParticipantV().displayDuration(landscape, soundsignal);
         }
     }
     public void showProgressBar(Boolean visible)

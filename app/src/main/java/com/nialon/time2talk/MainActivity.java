@@ -152,10 +152,10 @@ public class MainActivity extends AppCompatActivity
             }
             if (key.equals("soundsignal"))
             {
-                Boolean ms = sharedPreferences.getBoolean("soundsignal", false);
+                Boolean ss = sharedPreferences.getBoolean("soundsignal", false);
 
-                Log.d("soundsignal", ms.toString());
-                allParticipants.setSoundSignal(ms);
+                Log.d("soundsignal", ss.toString());
+                allParticipants.setSoundSignal(ss);
             }
             if (key.equals("ringtone"))
             {

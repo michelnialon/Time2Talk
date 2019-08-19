@@ -188,7 +188,7 @@ public class ParticipantV
         return selected;
     }
 
-    public void displayDuration(boolean landscape)
+    public void displayDuration(boolean landscape, boolean soundsignal)
     {
         int val = model.getDuration();
         int tot = allparticipants.getTotal();
@@ -201,7 +201,7 @@ public class ParticipantV
             tvDuration.setTextColor(Color.RED);
             //tvName.setTextColor(Color.RED);
             //tvPercentage.setTextColor(Color.RED);
-            if (selected)
+            if (selected && soundsignal)
             {
                 PlayNotification();
             }
@@ -270,7 +270,7 @@ public class ParticipantV
     }
     private  void StopNotification()
     {
-        if (!m_ringtone.isPlaying())
+        if (m_ringtone.isPlaying())
         {
             m_ringtone.stop();
         }
