@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"Partecipante rimosso."</string>
     <string name="confirmparticipantsupression">"Sei sicuro di voler eliminare questo partecipante?"</string>
     <string name="optimize_meeting">"Ottimizza le tue riunioni"</string>
+    <string name="donate">Fai una donazione</string>
 </resources>

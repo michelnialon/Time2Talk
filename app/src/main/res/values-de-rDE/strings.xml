@@ -42,4 +42,5 @@
     <string name="participantsuppressed">"Teilnehmer gelöscht."</string>
     <string name="confirmparticipantsupression">"Sind Sie sicher, dass Sie diesen Teilnehmer löschen möchten?"</string>
     <string name="optimize_meeting">"Optimieren Sie Ihre Besprechungen"</string>
+    <string name="donate">Machen Sie eine Spende</string>
 </resources>

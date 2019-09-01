@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"प्रतिभागी को हटा दिया गया।"</string>
     <string name="confirmparticipantsupression">"क्या आप वाकई इस प्रतिभागी को हटाना चाहते हैं?"</string>
     <string name="optimize_meeting">"अपनी बैठकों का अनुकूलन करें"</string>
+    <string name="donate">दान करें</string>
 </resources>

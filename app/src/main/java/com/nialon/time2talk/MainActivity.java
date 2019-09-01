@@ -130,11 +130,18 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+//        Intent intent;
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.mnuPrefs:
                 mnuPrefs();
                 return true;
+                /*
+            case R.id.mnuDonate:
+                intent = new Intent(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U6CX3ZNDSYFMQ")));
+                startActivity(intent);
+                return true;
+                */
             default:
                 return super.onOptionsItemSelected(item);
         }

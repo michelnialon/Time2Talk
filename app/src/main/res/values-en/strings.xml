@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"Attendee suppressed."</string>
     <string name="confirmparticipantsupression">"Are you sure you want to remove this attendee ?"</string>
     <string name="optimize_meeting">"Optimize your meetings"</string>
+    <string name="donate">Make a donation</string>
 </resources>

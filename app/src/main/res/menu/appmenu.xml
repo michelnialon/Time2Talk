@@ -3,5 +3,10 @@
     <item android:id="@+id/mnuPrefs"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/parameters" />
+    <!--
+    <item android:id="@+id/mnuDonate"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/donate" />
+        -->
 </menu>
 

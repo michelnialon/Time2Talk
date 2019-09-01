@@ -39,5 +39,6 @@
     <string name="starttalking">" بدأ الحديث."</string>
     <string name="participantsuppressed">"تمت إزالة المشارك."</string>
     <string name="confirmparticipantsupression">"هل أنت متأكد أنك تريد حذف هذا المشارك؟"</string>
+    <string name="donate">تبرع</string>
     <string name="optimize_meeting">"تحسين الاجتماعات الخاصة بك"</string>
 </resources>

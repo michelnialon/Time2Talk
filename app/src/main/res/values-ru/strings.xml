@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"Участник удален."</string>
     <string name="confirmparticipantsupression">"Вы уверены, что хотите удалить этого участника?"</string>
     <string name="optimize_meeting">"Оптимизируйте ваши встречи"</string>
+    <string name="donate">Сделать пожертвование</string>
 </resources>

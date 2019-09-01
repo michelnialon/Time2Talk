@@ -38,4 +38,6 @@
     <string name="starttalking">" commence à parler."</string>
     <string name="participantsuppressed">Participant suppressed.</string>
     <string name="confirmparticipantsupression">Are you sure you want to remove this participant ?</string>
+    <string name="donate">Make a donation</string>
+    <string name="optimize_meeting">Optimize your meetings</string>
 </resources>

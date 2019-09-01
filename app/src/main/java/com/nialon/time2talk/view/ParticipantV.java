@@ -1,11 +1,13 @@
 package com.nialon.time2talk.view;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Ringtone;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -91,7 +93,10 @@ public class ParticipantV
         progressBar.setIndeterminate(false);
         progressBar.setMax(100);
         progressBar.getProgressDrawable().setColorFilter(Color.BLUE, android.graphics.PorterDuff.Mode.SRC_IN);
-        progressBar.setProgress(1, false);
+
+        if (Build.VERSION.SDK_INT > 24) {
+            progressBar.setProgress(1, false);
+        }
 
         participantLayout.addView(progressBar);
 
@@ -275,7 +280,7 @@ public class ParticipantV
     }
     private  void StopNotification()
     {
-        if (allparticipants.ringtone.isPlaying())
+        //if (allparticipants.ringtone.isPlaying())
         {
             allparticipants.ringtone.stop();
         }

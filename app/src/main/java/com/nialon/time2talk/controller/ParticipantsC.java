@@ -212,7 +212,7 @@ public class ParticipantsC
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    ((TextView)v).setText(edtText.getText());
+                    ((TextView)v).setText(edtText.getText().toString());
                     ((ParticipantV)v.getTag()).getParticipantM().setName(edtText.getText().toString());
                     //getparticipantM.setName(edtText.getText().toString());
                     Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();

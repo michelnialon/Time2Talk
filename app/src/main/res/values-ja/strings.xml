@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"参加者が削除されました。"</string>
     <string name="confirmparticipantsupression">"この参加者を削除してもよろしいですか？"</string>
     <string name="optimize_meeting">"会議を最適化する"</string>
+    <string name="donate">寄付をする</string>
 </resources>

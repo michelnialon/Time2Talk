@@ -40,4 +40,5 @@
     <string name="participantsuppressed">"参与者已删除。"</string>
     <string name="confirmparticipantsupression">"您确定要删除此参与者吗？"</string>
     <string name="optimize_meeting">"优化您的会议"</string>
+    <string name="donate">捐款</string>
 </resources>
