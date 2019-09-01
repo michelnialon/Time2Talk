@@ -36,15 +36,15 @@ public class ParticipantV
     private TextView tvPercentage;
     private ProgressBar progressBar;
     private int index;
-    private Ringtone m_ringtone;
     private Typeface m_Typeface;
+    private Boolean silentMode;
 
     public LinearLayout getParticipantLayout()
     {
         return participantLayout;
     }
 
-    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Ringtone ringtone,    Typeface typeface)
+    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Typeface typeface, Boolean silentMode)
     {
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         lparams.setMargins(20,0,20,0);
@@ -57,9 +57,9 @@ public class ParticipantV
         this.model = participantM;
         this.allparticipants = allparticpants;
         this.ctxt = context;
-        this.m_ringtone = ringtone;
         this.m_Typeface = typeface;
         this.selected = false;
+        this.silentMode = silentMode;
 
         tvName=new TextView(context);
         tvName.setText(model.getName());
@@ -148,7 +148,7 @@ public class ParticipantV
     }
     public void toggleselect()
     {
-        m_ringtone.stop();
+        allparticipants.ringtone.stop();
         if (selected)
         {
             System.out.println("selected");
@@ -263,16 +263,21 @@ public class ParticipantV
 
     private void PlayNotification()
     {
-        if (!m_ringtone.isPlaying())
+        if (allparticipants.silentMode)
         {
-            m_ringtone.play();
+            allparticipants.ringtone.stop();
+        }
+        else
+        if (!allparticipants.ringtone.isPlaying())
+        {
+            allparticipants.ringtone.play();
         }
     }
     private  void StopNotification()
     {
-        if (m_ringtone.isPlaying())
+        if (allparticipants.ringtone.isPlaying())
         {
-            m_ringtone.stop();
+            allparticipants.ringtone.stop();
         }
     }
     public void showProgressBar()

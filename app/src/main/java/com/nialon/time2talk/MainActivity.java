@@ -17,12 +17,16 @@ import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -44,17 +48,27 @@ public class MainActivity extends AppCompatActivity
     private AdView adView;
     private String stringtone;
     private Ringtone ringtone;
+    private Button txtButton1;
+    private boolean silentmode=false;
+    private ImageButton imgButton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
+        Context context = getApplicationContext();
+
         Log.d("fun", "onCreate");
         setContentView(R.layout.activity_main);
         //m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
         m_Typeface = Typeface.createFromAsset(this.getAssets(), "led_counter-7.ttf");
 
+        txtButton1 = findViewById(R.id.txtButton1);
+        txtButton1.setTypeface(m_Typeface);
+        txtButton1.setTextColor(ContextCompat.getColor(context, android.R.color.holo_green_light));
+
+        imgButton4 = findViewById(R.id.imageButton4);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
         //TextView textView =findViewById(R.id.tvhelp);
@@ -73,14 +87,14 @@ public class MainActivity extends AppCompatActivity
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 
-        Context context = getApplicationContext();
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
 
         String s = prefs.getString("maxTime", "15");
         timeMax = Integer.parseInt(s);
-        Boolean multipleSpeakers = prefs.getBoolean("multiplespeakers", false);
-        Boolean soundsignal = prefs.getBoolean("soundsignal", false);
+        boolean multipleSpeakers = prefs.getBoolean("multiplespeakers", false);
+        boolean soundsignal = prefs.getBoolean("soundsignal", false);
         stringtone = prefs.getString("ringtone", "");
         Uri ringtoneUri = Uri.parse(stringtone);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
@@ -202,7 +216,7 @@ public class MainActivity extends AppCompatActivity
 
         ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getCount() + 1), allParticipants.getCount()+1);
         //participantM.setDuration(7200);
-        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, ringtone, m_Typeface);
+        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, m_Typeface, silentmode);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
         allParticipants.add(participantC);
@@ -233,6 +247,21 @@ public class MainActivity extends AppCompatActivity
             }
         });
         builder.show();
+    }
+    public void soundOff(View v)
+    {
+        if (silentmode)
+        {
+            imgButton4.setImageResource(android.R.drawable.ic_lock_silent_mode_off);
+            silentmode = false;
+            allParticipants.silentMode=false;
+        }
+        else
+        {
+            imgButton4.setImageResource(android.R.drawable.ic_lock_silent_mode);
+            silentmode = true;
+            allParticipants.silentMode=true;
+        }
     }
     public void shareData(View v)
     {

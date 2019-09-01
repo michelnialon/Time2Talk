@@ -25,14 +25,16 @@
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/imageButton"
+                <Button
+                    android:id="@+id/txtButton1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:contentDescription="@string/image"
+                    android:fontFamily="serif-monospace"
                     android:onClick="resetData"
-                    app:srcCompat="@android:drawable/ic_menu_delete" />
+                    android:textSize="22sp"
+                    android:text="00:00" />
 
                 <ImageButton
                     android:id="@+id/imageButton2"
@@ -50,6 +52,14 @@
                     android:contentDescription="@string/image"
                     android:onClick="shareData"
                     app:srcCompat="@android:drawable/ic_menu_share" />
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/image"
+                    android:onClick="soundOff"
+                    app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,7 +87,7 @@
         android:layout_gravity="bottom"
         android:gravity="bottom|center"
         android:orientation="vertical">
-
+<!--
         <TextView
             android:id="@+id/txtViewAdvertisement"
             android:layout_width="match_parent"
@@ -85,8 +95,9 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/str_advertisement"
-            android:textSize="20sp" />
-
+            android:textSize="20sp"
+            tools:visibility="invisible" />
+-->
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/ad_view"

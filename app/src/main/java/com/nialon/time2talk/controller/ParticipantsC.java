@@ -23,8 +23,9 @@ public class ParticipantsC
     private Boolean multipleSpeakers;
     private Boolean soundsignal;
     private String stringtone;
-    private Ringtone ringtone;
+    public Ringtone ringtone;
     private boolean landscape;
+    public boolean silentMode;
 
     private Context ctxt;
 
