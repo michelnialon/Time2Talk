@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.media.Ringtone;
+import android.media.ToneGenerator;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
@@ -40,6 +42,7 @@ public class ParticipantV
     private int index;
     private Typeface m_Typeface;
     private Boolean silentMode;
+    private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
 
     public LinearLayout getParticipantLayout()
     {
@@ -270,19 +273,24 @@ public class ParticipantV
     {
         if (allparticipants.silentMode)
         {
-            allparticipants.ringtone.stop();
+//            allparticipants.ringtone.stop();
+            toneGen1.stopTone();
         }
         else
-        if (!allparticipants.ringtone.isPlaying())
         {
-            allparticipants.ringtone.play();
+            toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
+        }
+//        if (!allparticipants.ringtone.isPlaying())
+        {
+//            allparticipants.ringtone.play();
         }
     }
     private  void StopNotification()
     {
         //if (allparticipants.ringtone.isPlaying())
         {
-            allparticipants.ringtone.stop();
+//            allparticipants.ringtone.stop();
+            toneGen1.stopTone();
         }
     }
     public void showProgressBar()
