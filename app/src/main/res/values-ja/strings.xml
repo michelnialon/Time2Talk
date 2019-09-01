@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Time2Talk"</string>
+    <string name="clicktoadd">"+をクリックして参加者を追加します"</string>
+    <string name="datareset">"データがリセットされました"</string>
+    <string name="image">"画像"</string>
+    <string name="initvalue1">"0％"</string>
+    <string name="initvalue2">"夜12時00分00秒"</string>
+    <string name="namemodified">"参加者の名前が変更されました"</string>
+    <string name="parameters">"設定"</string>
+    <string name="participantremove">"参加者が削除されました："</string>
+    <string name="resetconfirmation">"すべてのデータを本当にリセットしますか？"</string>
+    <string name="str_advertisement">"広告"</string>
+    <string name="total">"トータル"</string>
+    <string name="general">"一般的な"</string>
+    <string name="tempsmax">"最大時間（分）："</string>
+    <string name="tempsmaxdesc">"会議の1人あたりの最大発言時間。"</string>
+    <string name="multiplespeaker">"いくつかの議論"</string>
+    <string name="multiplespeakersdesc">"会議中に数人と話す機会"</string>
+    <string name="soundwarning">"音による警告"</string>
+    <string name="soundwarningdesc">"参加者が発言時間を超えたときの可聴信号？"</string>
+    <string name="melodytouse">"使用するメロディ"</string>
+    <string name="melodytousedesc">"追い越し警告信号の選択"</string>
+    <string name="minutes">"分（S）"</string>
+    <string name="maxduration">"最大期間"</string>
+    <string name="sendinfos">"情報を送る"</string>
+    <string name="meetinginfos">"ミーティング情報"</string>
+    <string name="confirmdatazero">"データを削除してもよろしいですか？"</string>
+    <string name="dataset2zero">"データがリセットされました"</string>
+    <string name="datanotset2zero">"データはリセットされていません"</string>
+    <string name="participant">"参加者"</string>
+    <string name="yes">"はい"</string>
+    <string name="no">"ではありません"</string>
+    <string name="modification">"変更"</string>
+    <string name="entername">"名前を入力してください"</string>
+    <string name="confirmation">"確認"</string>
+    <string name="ok">"OK"</string>
+    <string name="talknomore">" もう話していません。"</string>
+    <string name="starttalking">" 話し始めています。"</string>
+    <string name="participantsuppressed">"参加者が削除されました。"</string>
+    <string name="confirmparticipantsupression">"この参加者を削除してもよろしいですか？"</string>
+    <string name="optimize_meeting">"会議を最適化する"</string>
+</resources>

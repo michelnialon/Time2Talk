@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Time2Talk"</string>
+    <string name="clicktoadd">"एक प्रतिभागी को जोड़ने के लिए + पर क्लिक करें"</string>
+    <string name="datareset">"डेटा रीसेट कर दिया गया है"</string>
+    <string name="image">"छवि"</string>
+    <string name="initvalue1">"0%"</string>
+    <string name="initvalue2">"00:00:00"</string>
+    <string name="namemodified">"प्रतिभागी का नाम बदल दिया गया है"</string>
+    <string name="parameters">"सेटिंग्स"</string>
+    <string name="participantremove">"हटाए गए प्रतिभागी:"</string>
+    <string name="resetconfirmation">"क्या आप वास्तव में सभी डेटा रीसेट करना चाहते हैं?"</string>
+    <string name="str_advertisement">"विज्ञापन"</string>
+    <string name="total">"संपूर्ण"</string>
+    <string name="general">"सामान्य"</string>
+    <string name="tempsmax">"अधिकतम समय (मिनट):"</string>
+    <string name="tempsmaxdesc">"बैठक के लिए प्रति व्यक्ति अधिकतम बोलने का समय।"</string>
+    <string name="multiplespeaker">"कई चर्चाएँ"</string>
+    <string name="multiplespeakersdesc">"बैठक के दौरान कई से बात करने का अवसर"</string>
+    <string name="soundwarning">"ध्वनि चेतावनी"</string>
+    <string name="soundwarningdesc">"श्रव्य संकेत जब एक प्रतिभागी ने अपने बोलने का समय पार कर लिया है?"</string>
+    <string name="melodytouse">"उपयोग करने के लिए मेलोडी"</string>
+    <string name="melodytousedesc">"ओवरटेकिंग चेतावनी संकेत का चयन"</string>
+    <string name="minutes">"मिनट (रों)"</string>
+    <string name="maxduration">"अधिकतम अवधि"</string>
+    <string name="sendinfos">"जानकारी भेजें"</string>
+    <string name="meetinginfos">"बैठक की जानकारी"</string>
+    <string name="confirmdatazero">"क्या आप वाकई डेटा हटाना चाहते हैं?"</string>
+    <string name="dataset2zero">"डेटा रीसेट कर दिया गया है"</string>
+    <string name="datanotset2zero">"डेटा रीसेट नहीं किया गया है"</string>
+    <string name="participant">"प्रतिभागी"</string>
+    <string name="yes">"हां"</string>
+    <string name="no">"नहीं"</string>
+    <string name="modification">"परिवर्तन"</string>
+    <string name="entername">"कृपया नाम दर्ज करें"</string>
+    <string name="confirmation">"पुष्टीकरण"</string>
+    <string name="ok">"ठीक"</string>
+    <string name="talknomore">" कोई बात नहीं कर रहा है।"</string>
+    <string name="starttalking">" बात करने लगा है।"</string>
+    <string name="participantsuppressed">"प्रतिभागी को हटा दिया गया।"</string>
+    <string name="confirmparticipantsupression">"क्या आप वाकई इस प्रतिभागी को हटाना चाहते हैं?"</string>
+    <string name="optimize_meeting">"अपनी बैठकों का अनुकूलन करें"</string>
+</resources>

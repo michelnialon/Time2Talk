@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">"Time2Talk"</string>
+
+    <!-- Fuzzy -->
     <string name="clicktoadd">"Klicken Sie auf +, um einen Teilnehmer hinzuzufügen."</string>
     <string name="datareset">"Die Daten wurden auf Null zurückgesetzt."</string>
     <string name="image">"Bild"</string>
     <string name="initvalue1">"0%"</string>
     <string name="initvalue2">"0:00:00"</string>
-    <string name="initvalue3">"Teilnehmer"</string>
     <string name="namemodified">"Der Name des Teilnehmers wurde geändert."</string>
     <string name="parameters">"Einstellungen"</string>
     <string name="participantremove">"Teilnehmer gelöscht "</string>
@@ -40,4 +41,5 @@
     <string name="starttalking">" fängt an zu reden."</string>
     <string name="participantsuppressed">"Teilnehmer gelöscht."</string>
     <string name="confirmparticipantsupression">"Sind Sie sicher, dass Sie diesen Teilnehmer löschen möchten?"</string>
+    <string name="optimize_meeting">"Optimieren Sie Ihre Besprechungen"</string>
 </resources>

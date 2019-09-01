@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Time2Talk"</string>
+    <string name="clicktoadd">"انقر على + لإضافة مشارك"</string>
+    <string name="datareset">"تم إعادة ضبط البيانات"</string>
+    <string name="image">"صورة"</string>
+    <string name="initvalue1">"0٪"</string>
+    <string name="initvalue2">"0:00:00"</string>
+    <string name="namemodified">"تم تغيير اسم المشارك"</string>
+    <string name="parameters">"إعدادات"</string>
+    <string name="participantremove">"تم حذف المشارك:"</string>
+    <string name="resetconfirmation">"هل تريد حقًا إعادة تعيين جميع البيانات؟"</string>
+    <string name="str_advertisement">"إعلان"</string>
+    <string name="total">"مجموع"</string>
+    <string name="general">"عام"</string>
+    <string name="tempsmax">"أقصى وقت (بالدقائق):"</string>
+    <string name="tempsmaxdesc">"الحد الأقصى لوقت التحدث للشخص الواحد في الاجتماع."</string>
+    <string name="multiplespeaker">"عدة مناقشات"</string>
+    <string name="multiplespeakersdesc">"فرصة للتحدث مع عدة خلال الاجتماع"</string>
+    <string name="soundwarning">"تحذير صوتي"</string>
+    <string name="soundwarningdesc">"إشارة مسموعة عندما تجاوز أحد المشاركين وقت التحدث؟"</string>
+    <string name="melodytouse">"لحن للاستخدام"</string>
+    <string name="melodytousedesc">"اختيار إشارة تحذير التجاوز"</string>
+    <string name="minutes">"الدقيقة (ق)"</string>
+    <string name="maxduration">"المدة القصوى"</string>
+    <string name="sendinfos">"إرسال المعلومات"</string>
+    <string name="meetinginfos">"معلومات الاجتماع"</string>
+    <string name="confirmdatazero">"هل أنت متأكد أنك تريد حذف البيانات؟"</string>
+    <string name="dataset2zero">"تم إعادة ضبط البيانات"</string>
+    <string name="datanotset2zero">"لم يتم إعادة تعيين البيانات"</string>
+    <string name="participant">"مشارك"</string>
+    <string name="yes">"نعم"</string>
+    <string name="no">"ليس"</string>
+    <string name="modification">"تغيير"</string>
+    <string name="entername">"من فضلك ادخل الاسم"</string>
+    <string name="confirmation">"التأكيد"</string>
+    <string name="ok">"حسنا"</string>
+    <string name="talknomore">" لا يتحدث بعد الآن."</string>
+    <string name="starttalking">" بدأ الحديث."</string>
+    <string name="participantsuppressed">"تمت إزالة المشارك."</string>
+    <string name="confirmparticipantsupression">"هل أنت متأكد أنك تريد حذف هذا المشارك؟"</string>
+    <string name="optimize_meeting">"تحسين الاجتماعات الخاصة بك"</string>
+</resources>

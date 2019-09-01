@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Time2Talk"</string>
+    <string name="clicktoadd">"单击+以添加参与者"</string>
+    <string name="datareset">"数据已重置"</string>
+    <string name="image">"图片"</string>
+    <string name="initvalue1">"0％"</string>
+    <string name="initvalue2">"0:00:00"</string>
+    <string name="namemodified">"参与者的姓名已更改"</string>
+    <string name="parameters">"设置"</string>
+    <string name="participantremove">"参与者删除："</string>
+    <string name="resetconfirmation">"你真的想重置所有数据吗？"</string>
+    <string name="str_advertisement">"广告"</string>
+    <string name="total">"总"</string>
+    <string name="general">"一般"</string>
+    <string name="tempsmax">"最长时间（分钟）："</string>
+    <string name="tempsmaxdesc">"会议的每人最长发言时间。"</string>
+    <string name="multiplespeaker">"几个讨论"</string>
+    <string name="multiplespeakersdesc">"在会议期间与几个人交谈的机会"</string>
+    <string name="soundwarning">"声音警告"</string>
+    <string name="soundwarningdesc">"当参与者超过他的发言时间时发出声音信号？"</string>
+    <string name="melodytouse">"旋律使用"</string>
+    <string name="melodytousedesc">"选择超车警告信号"</string>
+    <string name="minutes">"分钟"</string>
+    <string name="maxduration">"最长持续时间"</string>
+    <string name="sendinfos">"发送信息"</string>
+    <string name="meetinginfos">"会议信息"</string>
+    <string name="confirmdatazero">"您确定要删除数据吗？"</string>
+    <string name="dataset2zero">"数据已重置"</string>
+    <string name="datanotset2zero">"数据尚未重置"</string>
+    <string name="participant">"参加者"</string>
+    <string name="yes">"是的"</string>
+    <string name="no">"不"</string>
+    <string name="modification">"变化"</string>
+    <string name="entername">"请输入名称"</string>
+    <string name="confirmation">"确认"</string>
+    <string name="ok">"行"</string>
+    <string name="talknomore">" 不再说话了。"</string>
+    <string name="starttalking">" 开始说话了。"</string>
+    <string name="participantsuppressed">"参与者已删除。"</string>
+    <string name="confirmparticipantsupression">"您确定要删除此参与者吗？"</string>
+    <string name="optimize_meeting">"优化您的会议"</string>
+</resources>
