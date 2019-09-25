@@ -137,12 +137,12 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    allParticipants.update();
-                    allParticipants.displayAll();
+                    //allParticipants.update();
+                    //allParticipants.displayAll();
                 }
                 if (allParticipants.nbselelected() > 0)
                 {
-                    handler.postDelayed(this, 1000);
+                   // handler.postDelayed(this, 1000);
                 }
                 else
                 {

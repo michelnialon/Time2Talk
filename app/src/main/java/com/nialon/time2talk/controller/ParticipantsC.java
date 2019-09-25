@@ -90,7 +90,7 @@ public class ParticipantsC
             {
                 p.getParticipantM().incDuration();
                 totalTime ++;
-                //System.out.println(p);
+                System.out.println(p);
             }
         }
     }
@@ -131,6 +131,7 @@ public class ParticipantsC
     public void UpdateCounters()
     {
         System.out.println("UpdateCounters");
+        handler1.removeCallbacks(runnable1);
         handler1.postDelayed(runnable1, 1000);
     }
     public void showProgressBar(Boolean visible)
