@@ -7,20 +7,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Dimension;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +33,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -51,6 +57,14 @@ public class MainActivity extends AppCompatActivity
     private Button txtButton1;
     private boolean silentmode=false;
     private ImageButton imgButton4;
+    private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+    private Handler handler;
+    private Runnable runnable;
+    private Display display;
+    private Point size;
+    private int scrwidth;
+    private int scrheight;
+    private LinearLayout svmain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +73,10 @@ public class MainActivity extends AppCompatActivity
 
         Context context = getApplicationContext();
 
-        Log.d("fun", "onCreate");
+        Log.d("On", "Create");
+        display = getWindowManager().getDefaultDisplay();
+
+        size = new Point();
         setContentView(R.layout.activity_main);
         //m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
         m_Typeface = Typeface.createFromAsset(this.getAssets(), "led_counter-7.ttf");
@@ -69,6 +86,7 @@ public class MainActivity extends AppCompatActivity
         txtButton1.setTextColor(ContextCompat.getColor(context, android.R.color.holo_green_light));
 
         imgButton4 = findViewById(R.id.imageButton4);
+        svmain = findViewById(R.id.llmain);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
         //TextView textView =findViewById(R.id.tvhelp);
@@ -105,22 +123,34 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable()
+        handler = new Handler();
+        runnable = new Runnable()
         {
             public void run()
             {
-                allParticipants.update();
-                allParticipants.displayAll();
+                //toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT,100);
+
                 if (allParticipants.getCount()==0)
                 {
                     LinearLayout lhelp = findViewById(R.id.layout_help);
                     lhelp.setVisibility(View.VISIBLE);
                 }
-                handler.postDelayed(this, 1000);
+                else
+                {
+                    allParticipants.update();
+                    allParticipants.displayAll();
+                }
+                if (allParticipants.nbselelected() > 0)
+                {
+                    handler.postDelayed(this, 1000);
+                }
+                else
+                {
+                    handler.removeCallbacks(runnable);
+                }
             }
         };
-        handler.postDelayed(runnable, 1000);
+        //handler.postDelayed(runnable, 1000);
     } // onCreate
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,11 +160,15 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        Intent intent;
+        Intent intent;
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.mnuPrefs:
                 mnuPrefs();
+                return true;
+            case R.id.mnuAbout:
+                intent = new Intent(this, about.class);
+                startActivity(intent);
                 return true;
                 /*
             case R.id.mnuDonate:
@@ -193,6 +227,16 @@ public class MainActivity extends AppCompatActivity
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
+        Log.d("On", "ConfigurationChanged");
+
+        display.getSize(size);
+        scrwidth = size.x;
+        scrheight = size.y;
+        scrwidth =svmain.getWidth();
+        scrheight = svmain.getHeight();
+        Log.d("Width", Integer.toString(scrwidth));
+        Log.d("Height", Integer.toString(scrheight));
+
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             allParticipants.showProgressBar(true);
@@ -205,6 +249,39 @@ public class MainActivity extends AppCompatActivity
             allParticipants.showProgressBar(false);
             allParticipants.setLandscape(false);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("On", "Start");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("On", "Resume");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("On", "Restart");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("On", "Pause");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("On", "Stop");
+    }
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacks(runnable);
+        allParticipants.reset();
+        super.onDestroy();
+        Log.d("On", "Destroy");
     }
     private  void mnuPrefs()
     {
@@ -221,7 +298,7 @@ public class MainActivity extends AppCompatActivity
 
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
 
-        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getCount() + 1), allParticipants.getCount()+1);
+        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getLast() + 1), allParticipants.getCount()+1);
         //participantM.setDuration(7200);
         ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, m_Typeface, silentmode);
         ParticipantC participantC = new ParticipantC(participantM, participantV);

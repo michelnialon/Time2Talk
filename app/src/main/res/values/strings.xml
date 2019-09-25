@@ -4,12 +4,12 @@
     <string name="initvalue1" translatable="false">0%</string>
     <string name="initvalue2" translatable="false">0:00:00</string>
     <string name="total">Total</string>
-    <string name="namemodified">Le nom du participant a été modifié</string>
-    <string name="resetconfirmation">Voulez-vous vraiment remettre toutes les données à zéro ?</string>
+    <string name="namemodified">The name of attendee has been modified</string>
+    <string name="resetconfirmation">Are you sure you want to reset the datas?</string>
     <string name="datareset">Data have been reset</string>
-    <string name="participantremove">Participant supprimé :</string>
-    <string name="str_advertisement">Publicité</string>
-    <string name="parameters">Paramètres</string>
+    <string name="participantremove">Participant suppressed.</string>
+    <string name="str_advertisement">Advertising</string>
+    <string name="parameters">Parameters</string>
     <string name="clicktoadd">Click + to add participant</string>
     <string name="general">General</string>
     <string name="tempsmax">Max duration (minutes):</string>
@@ -27,17 +27,18 @@
     <string name="confirmdatazero">Are you sure you want to delete data ?</string>
     <string name="dataset2zero">Data have been reset</string>
     <string name="datanotset2zero">Data have not been reset</string>
-    <string name="participant">Participant</string>
+    <string name="participant">Attendee</string>
     <string name="confirmation">Confirmation</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="modification">Modification</string>
     <string name="entername">Please enter new value</string>
     <string name="ok">OK</string>
-    <string name="talknomore">" ne parle plus."</string>
-    <string name="starttalking">" commence à parler."</string>
+    <string name="talknomore">" is not talking anymore."</string>
+    <string name="starttalking">" is starting to talk."</string>
     <string name="participantsuppressed">Participant suppressed.</string>
     <string name="confirmparticipantsupression">Are you sure you want to remove this participant ?</string>
     <string name="donate">Make a donation</string>
     <string name="optimize_meeting">Optimize your meetings</string>
+    <string name="about">About</string>
 </resources>

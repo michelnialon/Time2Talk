@@ -6,8 +6,8 @@ android {
         applicationId "com.nialon.time2talk"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 6
-        versionName "0.0.0-alpha06"
+        versionCode 17
+        versionName "0.0.1-alpha07"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

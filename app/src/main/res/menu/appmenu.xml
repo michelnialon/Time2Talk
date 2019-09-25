@@ -3,6 +3,11 @@
     <item android:id="@+id/mnuPrefs"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/parameters" />
+    <item
+        android:id="@+id/mnuAbout"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/about">
+    </item>
     <!--
     <item android:id="@+id/mnuDonate"
         android:icon="@android:drawable/ic_menu_preferences"

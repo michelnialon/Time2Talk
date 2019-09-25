@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.media.Ringtone;
+import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +19,7 @@ import java.util.Locale;
 
 public class ParticipantsC
 {
-    private ArrayList allParticipants;
+    private ArrayList allParticipantsList;
     private int totalTime;
     private int timeMax;
     private Boolean multipleSpeakers;
@@ -26,37 +28,62 @@ public class ParticipantsC
     public Ringtone ringtone;
     private boolean landscape;
     public boolean silentMode;
+    private int lastParticipant = 0;
+    private Handler handler1;
+    private Runnable runnable1;
 
     private Context ctxt;
 
     public ParticipantsC(int timeMax, Context context, boolean multipleSpeakers, boolean soundsignal, Ringtone ringtone)
     {
-        allParticipants = new ArrayList<ParticipantC>();
+        allParticipantsList = new ArrayList<ParticipantC>();
         totalTime = 0;
         this.timeMax = timeMax;
         this.multipleSpeakers = multipleSpeakers;
         this.soundsignal = soundsignal;
         this.ringtone = ringtone;
         this.ctxt = context;
+
+        handler1 = new Handler();
+        runnable1 = new Runnable()
+        {
+            public void run()
+            {
+                if (getCount() > 0)
+                {
+                    update();
+                    displayAll();
+                }
+                if (nbselelected() > 0)
+                {
+                    handler1.postDelayed(this, 1000);
+                }
+                else
+                {
+                    handler1.removeCallbacks(runnable1);
+                }
+            }
+        };
     }
 
     public void add(ParticipantC participantC)
     {
         try {
-            allParticipants.add(participantC);
+            allParticipantsList.add(participantC);
         }
         catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }
-        participantC.getParticipantV().setIndex(allParticipants.size()-1);
+        participantC.getParticipantV().setIndex(allParticipantsList.size()-1);
+        lastParticipant++;
     }
 
     public void update()
     {
-        System.out.println("update "+ allParticipants.size());
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        System.out.println("update " + nbselelected() + " / " + allParticipantsList.size());
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             //ParticipantV p  = (ParticipantV)allParticipants.get(counter);
             if (p.getParticipantV().isSelected())
             //if (p.isSelected())
@@ -67,12 +94,25 @@ public class ParticipantsC
             }
         }
     }
+    public int nbselelected()
+    {
+        int nb=0;
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
+        {
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
+            if (p.getParticipantV().isSelected())
+            {
+                nb ++;
+            }
+        }
+        return nb;
+    }
     private void unselectAllExcept(ParticipantV participantV)
     {
         System.out.println("unselectall ");
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             if (p.getParticipantV() != participantV)
             {
                 p.getParticipantV().unselect();
@@ -82,18 +122,23 @@ public class ParticipantsC
     public void displayAll()
     {
         //System.out.println("displayAll ");
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             p.getParticipantV().displayDuration(landscape, soundsignal);
         }
+    }
+    public void UpdateCounters()
+    {
+        System.out.println("UpdateCounters");
+        handler1.postDelayed(runnable1, 1000);
     }
     public void showProgressBar(Boolean visible)
     {
         //System.out.println("displayAll ");
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             if (visible)
             {
                 p.getParticipantV().showProgressBar();
@@ -107,9 +152,9 @@ public class ParticipantsC
     public void reset()
     {
         System.out.println("reset ");
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             p.getParticipantM().setDuration(0);
         }
         totalTime = 0;
@@ -121,9 +166,9 @@ public class ParticipantsC
         String infos = "";
         System.out.println("getInformations ");
 
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             infos += String.format(Locale.FRANCE,"%-20.20s : %s (%s)", p.getParticipantV().getParticipantM().getName(),
                     p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true),
                     p.getParticipantV().getPercentage()
@@ -140,10 +185,10 @@ public class ParticipantsC
 
         infos += "<table border=0>";
 
-        for (int counter = 0; counter < allParticipants.size(); counter++)
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
             infos += "<tr>";
-            ParticipantC p  = (ParticipantC)allParticipants.get(counter);
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
             infos += "<td>";
             infos += String.format(Locale.FRANCE,"%-20s", p.getParticipantV().getParticipantM().getName());
             infos += "</td><td>";
@@ -221,7 +266,6 @@ public class ParticipantsC
             builder.show();
         }
     };
-
     public View.OnClickListener getListener2()
     {
         return Listener2;
@@ -266,10 +310,10 @@ public class ParticipantsC
                     pV = (ParticipantV)v.getTag();
                     System.out.println("Remove " + pV.toString() + " " + pV.getIndex());
                     pV.getParticipantLayout().setVisibility(View.GONE);
-                    allParticipants.remove(pV.getIndex());
-                    for (int i = pV.getIndex(); i < allParticipants.size(); i++)
+                    allParticipantsList.remove(pV.getIndex());
+                    for (int i = pV.getIndex(); i < allParticipantsList.size(); i++)
                     {
-                        ParticipantC pC = (ParticipantC)allParticipants.get(i);
+                        ParticipantC pC = (ParticipantC)allParticipantsList.get(i);
                         pC.getParticipantV().setIndex(pC.getParticipantV().getIndex()-1);
                     }
                    Toast.makeText(ctxt, ctxt.getResources().getString(R.string.participantsuppressed), Toast.LENGTH_SHORT).show();
@@ -290,7 +334,12 @@ public class ParticipantsC
 
     public int getCount()
     {
-        return allParticipants.size();
+        return allParticipantsList.size();
+    }
+
+    public int getLast()
+    {
+        return lastParticipant;
     }
 
     public void setRingtone(Ringtone ringtone)

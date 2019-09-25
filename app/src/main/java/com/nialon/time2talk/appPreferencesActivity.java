@@ -31,14 +31,15 @@ public class appPreferencesActivity extends PreferenceActivity
             String mtime = this.findPreference("pref_key_category_1").getSharedPreferences().getString("maxTime", "15");
             this.findPreference("maxTime").setTitle(getResources().getString(R.string.maxduration) + " (" + mtime  + " " + getResources().getString(R.string.minutes) + ")");
 
+            /*
             String newValue = this.findPreference("pref_key_category_1").getSharedPreferences().getString("ringtone", "-");
             Uri ringtoneUri = Uri.parse(newValue);
             Ringtone ringtone = RingtoneManager.getRingtone(getContext(), ringtoneUri);
             String rtname = ringtone.getTitle(getContext());
             this.findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse) + " (" + rtname  + ")");
-
+            */
             boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
-            this.findPreference("ringtone").setEnabled(ssignal);
+//            this.findPreference("ringtone").setEnabled(ssignal);
             this.findPreference("soundsignal").setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
 
@@ -46,7 +47,7 @@ public class appPreferencesActivity extends PreferenceActivity
                         public boolean onPreferenceChange(Preference preference,
                                                           Object newValue) {
                             System.out.println("onPreferenceChange"+ "soundsignal changed");
-                            findPreference("ringtone").setEnabled((Boolean)newValue);
+                            //findPreference("ringtone").setEnabled((Boolean)newValue);
                             return true;
                         }
                     }
@@ -63,6 +64,7 @@ public class appPreferencesActivity extends PreferenceActivity
                         }
                     }
             );
+            /*
             this.findPreference("ringtone").setOnPreferenceChangeListener(
                     new Preference.OnPreferenceChangeListener() {
 
@@ -80,6 +82,8 @@ public class appPreferencesActivity extends PreferenceActivity
                         }
                     }
             );
+            */
+
         }
 
     }

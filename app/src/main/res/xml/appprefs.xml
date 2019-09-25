@@ -20,6 +20,7 @@
                     android:title="@string/soundwarning"
                     android:summary="@string/soundwarningdesc"
                     />
+                <!--
                 <RingtonePreference
                     android:key="ringtone"
                     android:title="@string/melodytouse"
@@ -27,5 +28,6 @@
                     android:showSilent="true"
                     android:summary="@string/melodytousedesc"
                     />
+                    -->
         </PreferenceCategory>
 </PreferenceScreen>

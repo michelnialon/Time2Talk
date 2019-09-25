@@ -42,7 +42,7 @@ public class ParticipantV
     private int index;
     private Typeface m_Typeface;
     private Boolean silentMode;
-    private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+    static private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
 
     public LinearLayout getParticipantLayout()
     {
@@ -170,6 +170,7 @@ public class ParticipantV
             System.out.println("not selected");
             Toast.makeText(ctxt, tvName.getText() + ctxt.getResources().getString(R.string.starttalking), Toast.LENGTH_LONG).show();
             selected = true;
+            allparticipants.UpdateCounters();
 
             tvName.setTypeface(tvName.getTypeface(), Typeface.BOLD);
             imgStartStop.setImageResource(android.R.drawable.ic_media_pause);
@@ -201,7 +202,7 @@ public class ParticipantV
         int val = model.getDuration();
         int tot = allparticipants.getTotal();
 
-        System.out.println(m_Typeface.toString());
+        //System.out.println(m_Typeface.toString());
         //tvDuration.setTypeface(m_Typeface);
         tot = (tot==0?1:tot); // to avoid divide by 0
         if (val > 60 * allparticipants.getTimeMax())
