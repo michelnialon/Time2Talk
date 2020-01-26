@@ -36,7 +36,7 @@ public class appPreferencesActivity extends PreferenceActivity
             Uri ringtoneUri = Uri.parse(newValue);
             Ringtone ringtone = RingtoneManager.getRingtone(getContext(), ringtoneUri);
             String rtname = ringtone.getTitle(getContext());
-            this.findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse) + " (" + rtname  + ")");
+            this.findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse2) + " (" + rtname  + ")");
             */
             boolean ssignal = this.findPreference("soundsignal").getSharedPreferences().getBoolean("soundsignal", false);
 //            this.findPreference("ringtone").setEnabled(ssignal);
@@ -76,7 +76,7 @@ public class appPreferencesActivity extends PreferenceActivity
                             Uri ringtoneUri = Uri.parse((String)newValue);
                             Ringtone ringtone = RingtoneManager.getRingtone(getContext(), ringtoneUri);
                             String rtname = ringtone.getTitle(getContext());
-                            findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse) + " (" + rtname  +  ")");
+                            findPreference("ringtone").setTitle(getResources().getString(R.string.melodytouse2) + " (" + rtname  +  ")");
 
                             return true;
                         }

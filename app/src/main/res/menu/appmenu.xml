@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/mnuPrefs"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/parameters" />
@@ -8,10 +9,20 @@
         android:icon="@android:drawable/ic_dialog_info"
         android:title="@string/about">
     </item>
-    <!--
-    <item android:id="@+id/mnuDonate"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/donate" />
-        -->
+    <item android:id="@+id/mnu_check_version"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/check_version">
+    </item>
+    <item android:id="@+id/mnu_share"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="ifRoom"
+        android:title="@string/share">
+    </item>
+    <item android:id="@+id/mnu_sendcomment"
+        android:icon="@android:drawable/ic_menu_send"
+        app:showAsAction="ifRoom"
+        android:title="@string/sendcomment">
+    </item>
+
 </menu>
 

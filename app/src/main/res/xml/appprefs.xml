@@ -23,10 +23,10 @@
                 <!--
                 <RingtonePreference
                     android:key="ringtone"
-                    android:title="@string/melodytouse"
+                    android:title="@string/melodytouse2"
                     android:showDefault="true"
                     android:showSilent="true"
-                    android:summary="@string/melodytousedesc"
+                    android:summary="@string/melodytousedesc2"
                     />
                     -->
         </PreferenceCategory>

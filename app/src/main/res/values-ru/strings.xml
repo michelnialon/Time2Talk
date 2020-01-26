@@ -3,14 +3,12 @@
     <string name="app_name">"Time2Talk"</string>
     <string name="clicktoadd">"Нажмите на +, чтобы добавить участника"</string>
     <string name="datareset">"Данные были сброшены"</string>
-    <string name="image">"изображение"</string>
     <string name="initvalue1">"0%"</string>
     <string name="initvalue2">"0:00:00"</string>
     <string name="namemodified">"Имя участника было изменено"</string>
     <string name="parameters">"настройки"</string>
     <string name="participantremove">"Участник удален:"</string>
     <string name="resetconfirmation">"Вы действительно хотите сбросить все данные?"</string>
-    <string name="str_advertisement">"реклама"</string>
     <string name="total">"общий"</string>
     <string name="general">"общий"</string>
     <string name="tempsmax">"Максимальное время (минуты):"</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">"Возможность пообщаться с несколькими во время встречи"</string>
     <string name="soundwarning">"Звуковое предупреждение"</string>
     <string name="soundwarningdesc">"Звуковой сигнал, когда участник превысил свое время выступления?"</string>
-    <string name="melodytouse">"Мелодия для использования"</string>
-    <string name="melodytousedesc">"Выбор предупреждающего сигнала об обгоне"</string>
     <string name="minutes">"минута (ы)"</string>
     <string name="maxduration">"Максимальная продолжительность"</string>
     <string name="sendinfos">"Отправить информацию"</string>
@@ -40,5 +36,9 @@
     <string name="participantsuppressed">"Участник удален."</string>
     <string name="confirmparticipantsupression">"Вы уверены, что хотите удалить этого участника?"</string>
     <string name="optimize_meeting">"Оптимизируйте ваши встречи"</string>
-    <string name="donate">Сделать пожертвование</string>
+    <string name="about">"Около"</string>
+    <string name="share">"Поделиться заявкой"</string>
+    <string name="sharecomment">"Вам понравится это приложение"</string>
+    <string name="check_version">"Проверьте, доступна ли новая версия"</string>
+    <string name="sendcomment"></string>
 </resources>

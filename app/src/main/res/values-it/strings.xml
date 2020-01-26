@@ -3,14 +3,12 @@
     <string name="app_name">"Time2Talk"</string>
     <string name="clicktoadd">"Fai clic su + per aggiungere un partecipante"</string>
     <string name="datareset">"I dati sono stati ripristinati"</string>
-    <string name="image">"immagine"</string>
     <string name="initvalue1">"0%"</string>
     <string name="initvalue2">"00:00:00"</string>
     <string name="namemodified">"Il nome del partecipante è stato modificato"</string>
     <string name="parameters">"impostazioni"</string>
     <string name="participantremove">"Partecipante eliminato:"</string>
     <string name="resetconfirmation">"Vuoi davvero ripristinare tutti i dati?"</string>
-    <string name="str_advertisement">"pubblicità"</string>
     <string name="total">"totale"</string>
     <string name="general">"generale"</string>
     <string name="tempsmax">"Tempo massimo (minuti):"</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">"Opportunità di parlare con alcuni durante l'incontro"</string>
     <string name="soundwarning">"Avviso sonoro"</string>
     <string name="soundwarningdesc">"Segnale acustico quando un partecipante ha superato il tempo di parola?"</string>
-    <string name="melodytouse">"Melodia da usare"</string>
-    <string name="melodytousedesc">"Selezione del segnale di avviso di sorpasso"</string>
     <string name="minutes">"minute (s)"</string>
     <string name="maxduration">"Durata massima"</string>
     <string name="sendinfos">"Invia informazioni"</string>
@@ -40,5 +36,9 @@
     <string name="participantsuppressed">"Partecipante rimosso."</string>
     <string name="confirmparticipantsupression">"Sei sicuro di voler eliminare questo partecipante?"</string>
     <string name="optimize_meeting">"Ottimizza le tue riunioni"</string>
-    <string name="donate">Fai una donazione</string>
+    <string name="about">"Di"</string>
+    <string name="share">"Condividi l'applicazione"</string>
+    <string name="sharecomment">"Ti piacerà questa applicazione"</string>
+    <string name="check_version">"Controlla se è disponibile una nuova versione"</string>
+    <string name="sendcomment"></string>
 </resources>

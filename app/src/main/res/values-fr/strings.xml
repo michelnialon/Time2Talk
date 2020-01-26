@@ -3,14 +3,12 @@
     <string name="app_name">Time2Talk</string>
     <string name="clicktoadd">Cliquer sur + pour ajouter un participant</string>
     <string name="datareset">Les données ont été remises à zéro</string>
-    <string name="image">Image</string>
     <string name="initvalue1">0%</string>
     <string name="initvalue2">0:00:00</string>
     <string name="namemodified">Le nom du participant a été modifié</string>
     <string name="parameters">Paramètres</string>
     <string name="participantremove">Participant supprimé :</string>
     <string name="resetconfirmation">Voulez-vous vraiment remettre toutes les données à zéro ?</string>
-    <string name="str_advertisement">Publicité</string>
     <string name="total">Total</string>
     <string name="general">Général</string>
     <string name="tempsmax">Temps max (minutes) :</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">Possibilité de parler à plusieurs pendant la réunion</string>
     <string name="soundwarning">Avertissement sonore</string>
     <string name="soundwarningdesc">Signal sonore lorsqu\'un participant a dépassé son temps de parole?</string>
-    <string name="melodytouse">Mélodie à utiliser</string>
-    <string name="melodytousedesc">Sélection du signal d\'avertissement de dépassement</string>
     <string name="minutes">minute(s)</string>
     <string name="maxduration">Durée maximale</string>
     <string name="sendinfos">Envoyer les informations</string>
@@ -39,7 +35,10 @@
     <string name="starttalking">" commence à parler."</string>
     <string name="participantsuppressed">Participant supprimé.</string>
     <string name="confirmparticipantsupression">Etes-vous sûr de vouloir supprimer ce participant ?</string>
-    <string name="donate">Faire un don</string>
     <string name="optimize_meeting">"Optimisez vos meetings"</string>
     <string name="about">A propos</string>
+    <string name="check_version">Vérifier nouvelle version</string>
+    <string name="sharecomment">Cette application devrait t\'intéresser.</string>
+    <string name="sendcomment">Envoyer un mail au développeur</string>
+    <string name="share">Partager l\'application</string>
 </resources>

@@ -68,7 +68,8 @@ public class ParticipantV
 
         tvName=new TextView(context);
         tvName.setText(model.getName());
-        tvName.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_blue_dark));
+        //tvName.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_blue_dark));
+        tvName.setTextColor(Color.rgb(0,116,255));
         tvName.setTextSize(22);
         tvName.setTag(this);
         tvName.setOnClickListener(allparticipants.getListener1());
@@ -79,6 +80,7 @@ public class ParticipantV
         imgStartStop = new ImageButton(ctxt);
         imgStartStop.setImageResource(android.R.drawable.ic_media_play);
         imgStartStop.setTag(this);
+        imgStartStop.setBackground(null);
         imgStartStop.setOnClickListener(allparticipants.getListener2());
         participantLayout.addView(imgStartStop);
 
@@ -112,12 +114,13 @@ public class ParticipantV
         LinearLayout.LayoutParams wparams2= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
         LinearLayout.LayoutParams wparams3= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.2f);
         LinearLayout.LayoutParams wparams4= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);
-        LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f);
+        LinearLayout.LayoutParams wparams5= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);
         LinearLayout.LayoutParams wparams6= new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.4f);
 
         // Remove participant
         imgRemove = new ImageButton(ctxt);
-        imgRemove.setImageResource(android.R.drawable.ic_menu_delete);
+        imgRemove.setImageResource(ctxt.getResources().getIdentifier("deluser_on", "mipmap", ctxt.getPackageName()));
+        imgRemove.setBackground(null);
         imgRemove.setTag(this);
         imgRemove.setOnClickListener(allparticipants.getListener3());
 

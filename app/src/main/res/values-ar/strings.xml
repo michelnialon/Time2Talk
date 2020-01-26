@@ -3,14 +3,12 @@
     <string name="app_name">"Time2Talk"</string>
     <string name="clicktoadd">"انقر على + لإضافة مشارك"</string>
     <string name="datareset">"تم إعادة ضبط البيانات"</string>
-    <string name="image">"صورة"</string>
     <string name="initvalue1">"0٪"</string>
     <string name="initvalue2">"0:00:00"</string>
     <string name="namemodified">"تم تغيير اسم المشارك"</string>
     <string name="parameters">"إعدادات"</string>
     <string name="participantremove">"تم حذف المشارك:"</string>
     <string name="resetconfirmation">"هل تريد حقًا إعادة تعيين جميع البيانات؟"</string>
-    <string name="str_advertisement">"إعلان"</string>
     <string name="total">"مجموع"</string>
     <string name="general">"عام"</string>
     <string name="tempsmax">"أقصى وقت (بالدقائق):"</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">"فرصة للتحدث مع عدة خلال الاجتماع"</string>
     <string name="soundwarning">"تحذير صوتي"</string>
     <string name="soundwarningdesc">"إشارة مسموعة عندما تجاوز أحد المشاركين وقت التحدث؟"</string>
-    <string name="melodytouse">"لحن للاستخدام"</string>
-    <string name="melodytousedesc">"اختيار إشارة تحذير التجاوز"</string>
     <string name="minutes">"الدقيقة (ق)"</string>
     <string name="maxduration">"المدة القصوى"</string>
     <string name="sendinfos">"إرسال المعلومات"</string>
@@ -39,6 +35,10 @@
     <string name="starttalking">" بدأ الحديث."</string>
     <string name="participantsuppressed">"تمت إزالة المشارك."</string>
     <string name="confirmparticipantsupression">"هل أنت متأكد أنك تريد حذف هذا المشارك؟"</string>
-    <string name="donate">تبرع</string>
     <string name="optimize_meeting">"تحسين الاجتماعات الخاصة بك"</string>
+    <string name="about">"حول"</string>
+    <string name="share">"مشاركة التطبيق"</string>
+    <string name="sharecomment">"سوف يعجبك هذا التطبيق"</string>
+    <string name="check_version">"تحقق من توفر إصدار جديد"</string>
+    <string name="sendcomment"></string>
 </resources>

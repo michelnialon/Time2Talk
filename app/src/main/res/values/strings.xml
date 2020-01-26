@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Time2Talk</string>
-    <string name="image">Image</string>
     <string name="initvalue1" translatable="false">0%</string>
     <string name="initvalue2" translatable="false">0:00:00</string>
     <string name="total">Total</string>
@@ -8,7 +7,6 @@
     <string name="resetconfirmation">Are you sure you want to reset the datas?</string>
     <string name="datareset">Data have been reset</string>
     <string name="participantremove">Participant suppressed.</string>
-    <string name="str_advertisement">Advertising</string>
     <string name="parameters">Parameters</string>
     <string name="clicktoadd">Click + to add participant</string>
     <string name="general">General</string>
@@ -18,8 +16,6 @@
     <string name="multiplespeakersdesc">Possibility to have more than one speaker at the same time</string>
     <string name="soundwarning">Warning sound</string>
     <string name="soundwarningdesc">Warning sound when time is over for an user</string>
-    <string name="melodytouse">Melody to use</string>
-    <string name="melodytousedesc">Select the melody to use when time is over</string>
     <string name="maxduration">Duration max</string>
     <string name="minutes">minute(s)</string>
     <string name="sendinfos">Send informations</string>
@@ -38,7 +34,10 @@
     <string name="starttalking">" is starting to talk."</string>
     <string name="participantsuppressed">Participant suppressed.</string>
     <string name="confirmparticipantsupression">Are you sure you want to remove this participant ?</string>
-    <string name="donate">Make a donation</string>
     <string name="optimize_meeting">Optimize your meetings</string>
     <string name="about">About</string>
+    <string name="share">Share the application</string>
+    <string name="check_version">Check if new version available</string>
+    <string name="sendcomment">Send email to the developer</string>
+    <string name="sharecomment">You will like this application.</string>
 </resources>

@@ -5,14 +5,12 @@
     <!-- Fuzzy -->
     <string name="clicktoadd">"Klicken Sie auf +, um einen Teilnehmer hinzuzufügen."</string>
     <string name="datareset">"Die Daten wurden auf Null zurückgesetzt."</string>
-    <string name="image">"Bild"</string>
     <string name="initvalue1">"0%"</string>
     <string name="initvalue2">"0:00:00"</string>
     <string name="namemodified">"Der Name des Teilnehmers wurde geändert."</string>
     <string name="parameters">"Einstellungen"</string>
     <string name="participantremove">"Teilnehmer gelöscht "</string>
     <string name="resetconfirmation">"Wollen Sie wirklich alle Daten auf Null zurücksetzen?"</string>
-    <string name="str_advertisement">"Werbung"</string>
     <string name="total">"Gesamt"</string>
     <string name="general">"Allgemein"</string>
     <string name="tempsmax">"Maximale Zeit (Minuten) :"</string>
@@ -21,8 +19,6 @@
     <string name="multiplespeakersdesc">"Möglichkeit, während des Meetings mit mehreren Personen zu sprechen."</string>
     <string name="soundwarning">"Akustische Warnung"</string>
     <string name="soundwarningdesc">"Piepton, wenn ein Teilnehmer seine Redezeit überschritten hat?"</string>
-    <string name="melodytouse">"Zu verwendende Melodie"</string>
-    <string name="melodytousedesc">"Auswahl des Überholwarnsignals"</string>
     <string name="minutes">"Minute(n)"</string>
     <string name="maxduration">" Maximale Dauer"</string>
     <string name="sendinfos">"Informationen senden"</string>
@@ -42,5 +38,9 @@
     <string name="participantsuppressed">"Teilnehmer gelöscht."</string>
     <string name="confirmparticipantsupression">"Sind Sie sicher, dass Sie diesen Teilnehmer löschen möchten?"</string>
     <string name="optimize_meeting">"Optimieren Sie Ihre Besprechungen"</string>
-    <string name="donate">Machen Sie eine Spende</string>
+    <string name="about">"Über"</string>
+    <string name="share">"Teilen Sie die Anwendung"</string>
+    <string name="sharecomment">"Sie werden diese Anwendung mögen"</string>
+    <string name="check_version">"Prüfen Sie, ob eine neue Version verfügbar ist"</string>
+    <string name="sendcomment"></string>
 </resources>

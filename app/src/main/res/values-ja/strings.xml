@@ -3,14 +3,12 @@
     <string name="app_name">"Time2Talk"</string>
     <string name="clicktoadd">"+をクリックして参加者を追加します"</string>
     <string name="datareset">"データがリセットされました"</string>
-    <string name="image">"画像"</string>
     <string name="initvalue1">"0％"</string>
     <string name="initvalue2">"夜12時00分00秒"</string>
     <string name="namemodified">"参加者の名前が変更されました"</string>
     <string name="parameters">"設定"</string>
     <string name="participantremove">"参加者が削除されました："</string>
     <string name="resetconfirmation">"すべてのデータを本当にリセットしますか？"</string>
-    <string name="str_advertisement">"広告"</string>
     <string name="total">"トータル"</string>
     <string name="general">"一般的な"</string>
     <string name="tempsmax">"最大時間（分）："</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">"会議中に数人と話す機会"</string>
     <string name="soundwarning">"音による警告"</string>
     <string name="soundwarningdesc">"参加者が発言時間を超えたときの可聴信号？"</string>
-    <string name="melodytouse">"使用するメロディ"</string>
-    <string name="melodytousedesc">"追い越し警告信号の選択"</string>
     <string name="minutes">"分（S）"</string>
     <string name="maxduration">"最大期間"</string>
     <string name="sendinfos">"情報を送る"</string>
@@ -40,5 +36,9 @@
     <string name="participantsuppressed">"参加者が削除されました。"</string>
     <string name="confirmparticipantsupression">"この参加者を削除してもよろしいですか？"</string>
     <string name="optimize_meeting">"会議を最適化する"</string>
-    <string name="donate">寄付をする</string>
+    <string name="about">"約"</string>
+    <string name="share">"アプリケーションを共有する"</string>
+    <string name="sharecomment">"あなたはこのアプリケーションが好きになります"</string>
+    <string name="check_version">"新しいバージョンが利用可能かどうかを確認します"</string>
+    <string name="sendcomment"></string>
 </resources>

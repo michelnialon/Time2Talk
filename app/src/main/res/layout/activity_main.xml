@@ -11,13 +11,15 @@
         android:id="@+id/scrvmain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@android:color/black">
 
         <LinearLayout
             android:id="@+id/layout_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingTop="10dp"
             android:paddingBottom="5sp">
 
             <LinearLayout
@@ -27,41 +29,43 @@
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/txtButton1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:contentDescription="@string/image"
-                    android:fontFamily="serif-monospace"
-                    android:onClick="resetData"
-                    android:textSize="22sp"
-                    android:text="00:00" />
-
                 <ImageButton
                     android:id="@+id/imageButton2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:contentDescription="@string/image"
+                    android:background="@null"
+                    android:contentDescription="add"
                     android:onClick="addItem"
-                    app:srcCompat="@android:drawable/ic_input_add" />
+                    android:src="@mipmap/adduser_on" />
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:contentDescription="reset"
+                    android:onClick="resetData"
+                    android:src="@mipmap/raz_on" />
                 <ImageButton
                     android:id="@+id/imageButton3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:contentDescription="@string/image"
+                    android:background="@null"
+                    android:contentDescription="share"
                     android:onClick="shareData"
-                    app:srcCompat="@android:drawable/ic_menu_share" />
+                    android:src="@mipmap/share_on" />
+
                 <ImageButton
                     android:id="@+id/imageButton4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:contentDescription="@string/image"
+                    android:background="@null"
+                    android:contentDescription="sound on/off"
                     android:onClick="soundOff"
-                    app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+                    android:src="@mipmap/hp_on" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,6 +82,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:text="@string/clicktoadd"
+                    android:textColor="@android:color/white"
                     android:textSize="28sp" />
             </LinearLayout>
         </LinearLayout>
@@ -96,7 +101,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/str_advertisement"
+            android:text="@string/str_advertisement2"
             android:textSize="20sp"
             tools:visibility="invisible" />
 -->

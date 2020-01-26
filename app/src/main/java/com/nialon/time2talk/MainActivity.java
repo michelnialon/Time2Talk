@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
@@ -15,6 +18,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 
@@ -24,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity
     private AdView adView;
     private String stringtone;
     private Ringtone ringtone;
-    private Button txtButton1;
+    private ImageButton imageButton1;
     private boolean silentmode=false;
     private ImageButton imgButton4;
     private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
@@ -62,9 +67,10 @@ public class MainActivity extends AppCompatActivity
     private Runnable runnable;
     private Display display;
     private Point size;
+    Rect windowRect;
     private int scrwidth;
     private int scrheight;
-    private LinearLayout svmain;
+    private ScrollView scrvmain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,12 +87,10 @@ public class MainActivity extends AppCompatActivity
         //m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
         m_Typeface = Typeface.createFromAsset(this.getAssets(), "led_counter-7.ttf");
 
-        txtButton1 = findViewById(R.id.txtButton1);
-        txtButton1.setTypeface(m_Typeface);
-        txtButton1.setTextColor(ContextCompat.getColor(context, android.R.color.holo_green_light));
+        imageButton1 = findViewById(R.id.imageButton1);
 
         imgButton4 = findViewById(R.id.imageButton4);
-        svmain = findViewById(R.id.llmain);
+        scrvmain = findViewById(R.id.scrvmain);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
         //TextView textView =findViewById(R.id.tvhelp);
@@ -161,6 +165,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
+        String AppVersion="";
+        try
+        {
+            PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
+            AppVersion = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.mnuPrefs:
@@ -170,12 +182,44 @@ public class MainActivity extends AppCompatActivity
                 intent = new Intent(this, about.class);
                 startActivity(intent);
                 return true;
-                /*
-            case R.id.mnuDonate:
-                intent = new Intent(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U6CX3ZNDSYFMQ")));
+            case R.id.mnu_check_version:
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=com.nialon.time2talk"));
                 startActivity(intent);
                 return true;
-                */
+            case R.id.mnu_sendcomment:
+                intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/html");
+                intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+                intent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { "mnialon@gmail.com" });
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        Html.fromHtml(new StringBuilder()
+                                .append("<html><head></head><body>")
+                                .append("<p>---</p>")
+                                .append("<p>Version Application : " + AppVersion + "</p>")
+                                .append("<p>Android Version : " + Build.VERSION.SDK_INT + " (" + Build.VERSION.RELEASE + ")</p>")
+                                .append("<p>Device Type : " + Build.MANUFACTURER + " (" + Build.MODEL + ")</p>")
+                                .append("</body></html>")
+                                .toString())
+                );
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.app_name)));
+                return true;
+            case R.id.mnu_share:
+                intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+                intent.putExtra(Intent.EXTRA_SUBJECT,  getResources().getString(R.string.app_name));
+
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        Html.fromHtml(new StringBuilder()
+                                .append("<html><head></head><body>")
+                                .append("<p>" +  getResources().getString(R.string.sharecomment) + "</p>")
+                                .append("<p>https://play.google.com/store/apps/details?id=com.nialon.time2talk</p>")
+                                .append("<p>https://www.facebook.com/Time2Talk</p>")
+                                .append("</body></html>")
+                                .toString())
+                );
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.app_name)));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -230,10 +274,10 @@ public class MainActivity extends AppCompatActivity
         Log.d("On", "ConfigurationChanged");
 
         display.getSize(size);
-        scrwidth = size.x;
-        scrheight = size.y;
-        scrwidth =svmain.getWidth();
-        scrheight = svmain.getHeight();
+        windowRect = new Rect();
+        scrvmain.getWindowVisibleDisplayFrame(windowRect);
+        scrwidth = windowRect.width();
+        scrheight = windowRect.height();
         Log.d("Width", Integer.toString(scrwidth));
         Log.d("Height", Integer.toString(scrheight));
 
@@ -336,13 +380,13 @@ public class MainActivity extends AppCompatActivity
     {
         if (silentmode)
         {
-            imgButton4.setImageResource(android.R.drawable.ic_lock_silent_mode_off);
+            imgButton4.setImageResource(getResources().getIdentifier("hp_on", "mipmap", getPackageName()));
             silentmode = false;
             allParticipants.silentMode=false;
         }
         else
         {
-            imgButton4.setImageResource(android.R.drawable.ic_lock_silent_mode);
+            imgButton4.setImageResource(getResources().getIdentifier("hp_off", "mipmap", getPackageName()));
             silentmode = true;
             allParticipants.silentMode=true;
         }

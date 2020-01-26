@@ -3,14 +3,12 @@
     <string name="app_name">"Time2Talk"</string>
     <string name="clicktoadd">"Haga clic en + para agregar un participante"</string>
     <string name="datareset">"Los datos han sido restablecidos"</string>
-    <string name="image">"imagen"</string>
     <string name="initvalue1">"0%"</string>
     <string name="initvalue2">"0:00:00"</string>
     <string name="namemodified">"Se ha cambiado el nombre del participante."</string>
     <string name="parameters">"configuraciones"</string>
     <string name="participantremove">"Participante eliminado:"</string>
     <string name="resetconfirmation">"¿Realmente quieres restablecer todos los datos?"</string>
-    <string name="str_advertisement">"publicidad"</string>
     <string name="total">"total"</string>
     <string name="general">"general"</string>
     <string name="tempsmax">"Tiempo máximo (minutos):"</string>
@@ -19,8 +17,6 @@
     <string name="multiplespeakersdesc">"Oportunidad de hablar con varios durante la reunión."</string>
     <string name="soundwarning">"Advertencia de sonido"</string>
     <string name="soundwarningdesc">"¿Señal audible cuando un participante ha excedido su tiempo de hablar?"</string>
-    <string name="melodytouse">"Melodía para usar"</string>
-    <string name="melodytousedesc">"Selección de la señal de advertencia de adelantamiento"</string>
     <string name="minutes">"minutos)"</string>
     <string name="maxduration">"Duración máxima"</string>
     <string name="sendinfos">"Enviar información"</string>
@@ -40,5 +36,9 @@
     <string name="participantsuppressed">"Participante eliminado."</string>
     <string name="confirmparticipantsupression">"¿Seguro que quieres eliminar a este participante?"</string>
     <string name="optimize_meeting">"Optimiza tus reuniones"</string>
-    <string name="donate">Hacer una donación</string>
+    <string name="about">"Acerca de"</string>
+    <string name="share">"Comparte la aplicación"</string>
+    <string name="sharecomment">"Te gustará esta aplicación"</string>
+    <string name="check_version">"Compruebe si hay una nueva versión disponible"</string>
+    <string name="sendcomment"></string>
 </resources>
