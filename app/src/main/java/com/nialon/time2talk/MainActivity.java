@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         imgButton4 = findViewById(R.id.imageButton4);
         scrvmain = findViewById(R.id.scrvmain);
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, "ca-app-pub-4468029712209847~8644725633");
         //TextView textView =findViewById(R.id.tvhelp);
         //textView.setTypeface(m_Typeface);
         adView = findViewById(R.id.ad_view);
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
                                 .append("</body></html>")
                                 .toString())
                 );
-                startActivity(Intent.createChooser(intent, getResources().getString(R.string.app_name)));
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.sendcomment)));
                 return true;
             case R.id.mnu_share:
                 intent = new Intent(android.content.Intent.ACTION_SEND);
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity
                                 .append("</body></html>")
                                 .toString())
                 );
-                startActivity(Intent.createChooser(intent, getResources().getString(R.string.app_name)));
+                startActivity(Intent.createChooser(intent, getResources().getString(R.string.share)));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
