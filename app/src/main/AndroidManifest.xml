@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".appPreferencesActivity">
+        <activity android:name=".appPreferencesActivity" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".about">
+        <activity android:name=".about" android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>

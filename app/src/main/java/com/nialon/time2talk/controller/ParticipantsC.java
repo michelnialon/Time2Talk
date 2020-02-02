@@ -160,6 +160,7 @@ public class ParticipantsC
         }
         totalTime = 0;
         unselectAllExcept(null);
+        handler1.removeCallbacks(runnable1);
     }
 
     public String getInformations()

@@ -40,5 +40,5 @@
     <string name="share">"Поделиться заявкой"</string>
     <string name="sharecomment">"Вам понравится это приложение"</string>
     <string name="check_version">"Проверьте, доступна ли новая версия"</string>
-    <string name="sendcomment"></string>
+    <string name="sendcomment">Отправить письмо разработчику</string>
 </resources>

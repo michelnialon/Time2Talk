@@ -1,13 +1,11 @@
 package com.nialon.time2talk.view;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
-import android.media.Ringtone;
 import android.media.ToneGenerator;
 import android.os.Build;
 import android.view.Gravity;
@@ -41,7 +39,6 @@ public class ParticipantV
     private ProgressBar progressBar;
     private int index;
     private Typeface m_Typeface;
-    private Boolean silentMode;
     static private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
 
     public LinearLayout getParticipantLayout()
@@ -49,7 +46,7 @@ public class ParticipantV
         return participantLayout;
     }
 
-    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Typeface typeface, Boolean silentMode)
+    public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Typeface typeface)
     {
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         lparams.setMargins(20,0,20,0);
@@ -64,7 +61,6 @@ public class ParticipantV
         this.ctxt = context;
         this.m_Typeface = typeface;
         this.selected = false;
-        this.silentMode = silentMode;
 
         tvName=new TextView(context);
         tvName.setText(model.getName());

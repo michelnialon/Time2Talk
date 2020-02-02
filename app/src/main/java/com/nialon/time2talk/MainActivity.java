@@ -124,10 +124,11 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState != null)
         {
+            Toast.makeText(this, "savedInstance", Toast.LENGTH_SHORT).show();
 
         }
 
-        handler = new Handler();
+       /* handler = new Handler();
         runnable = new Runnable()
         {
             public void run()
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                     handler.removeCallbacks(runnable);
                 }
             }
-        };
+        };*/
         //handler.postDelayed(runnable, 1000);
     } // onCreate
     @Override
@@ -322,7 +323,7 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     protected void onDestroy() {
-        handler.removeCallbacks(runnable);
+        //handler.removeCallbacks(runnable);
         allParticipants.reset();
         super.onDestroy();
         Log.d("On", "Destroy");
@@ -344,7 +345,7 @@ public class MainActivity extends AppCompatActivity
 
         ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getLast() + 1), allParticipants.getCount()+1);
         //participantM.setDuration(7200);
-        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, m_Typeface, silentmode);
+        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, m_Typeface);
         ParticipantC participantC = new ParticipantC(participantM, participantV);
         allParticipantsLayout.addView(participantV.getParticipantLayout());
         allParticipants.add(participantC);

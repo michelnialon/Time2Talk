@@ -40,5 +40,5 @@
     <string name="share">"आवेदन साझा करें"</string>
     <string name="sharecomment">"आप इस आवेदन को पसंद करेंगे"</string>
     <string name="check_version">"जांचें कि क्या नया संस्करण उपलब्ध है"</string>
-    <string name="sendcomment"></string>
+    <string name="sendcomment">डेवलपर को एक ईमेल भेजें</string>
 </resources>

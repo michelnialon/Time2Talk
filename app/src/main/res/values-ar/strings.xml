@@ -40,5 +40,5 @@
     <string name="share">"مشاركة التطبيق"</string>
     <string name="sharecomment">"سوف يعجبك هذا التطبيق"</string>
     <string name="check_version">"تحقق من توفر إصدار جديد"</string>
-    <string name="sendcomment"></string>
+    <string name="sendcomment">إرسال بريد إلكتروني إلى المطور</string>
 </resources>

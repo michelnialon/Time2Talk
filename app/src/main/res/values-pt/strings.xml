@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Time2Talk"</string>
+    <string name="clicktoadd">"Clique em + para adicionar um participante"</string>
+    <string name="datareset">"Os dados foram redefinidos"</string>
+    <string name="initvalue1">"0%"</string>
+    <string name="initvalue2">"00:00:00"</string>
+    <string name="namemodified">"O nome do participante foi alterado"</string>
+    <string name="parameters">"configurações"</string>
+    <string name="participantremove">"Participante excluído:"</string>
+    <string name="resetconfirmation">"Você realmente deseja redefinir todos os dados?"</string>
+    <string name="total">"total"</string>
+    <string name="general">"geral"</string>
+    <string name="tempsmax">"Tempo máximo (minutos):"</string>
+    <string name="tempsmaxdesc">"Tempo máximo de conversação por pessoa para a reunião."</string>
+    <string name="multiplespeaker">"Várias discussões"</string>
+    <string name="multiplespeakersdesc">"Oportunidade de conversar com vários durante a reunião"</string>
+    <string name="soundwarning">"Aviso sonoro"</string>
+    <string name="soundwarningdesc">"Sinal sonoro quando um participante excedeu seu tempo de fala?"</string>
+    <string name="minutes">"minuto (s)"</string>
+    <string name="maxduration">"Duração máxima"</string>
+    <string name="sendinfos">"Enviar informação"</string>
+    <string name="meetinginfos">"Informação da reunião"</string>
+    <string name="confirmdatazero">"Tem certeza de que deseja excluir os dados?"</string>
+    <string name="dataset2zero">"Os dados foram redefinidos"</string>
+    <string name="datanotset2zero">"Os dados não foram redefinidos"</string>
+    <string name="participant">"participante"</string>
+    <string name="yes">"sim"</string>
+    <string name="no">"não"</string>
+    <string name="modification">"mudança"</string>
+    <string name="entername">"Por favor insira o nome"</string>
+    <string name="confirmation">"confirmação"</string>
+    <string name="ok">"ok"</string>
+    <string name="talknomore">" não está mais falando."</string>
+    <string name="starttalking">" está começando a falar."</string>
+    <string name="participantsuppressed">"Participante removido."</string>
+    <string name="confirmparticipantsupression">"Tem certeza de que deseja excluir este participante?"</string>
+    <string name="optimize_meeting">"Otimize suas reuniões"</string>
+    <string name="about">"Sobre"</string>
+    <string name="share">"Compartilhe o aplicativo"</string>
+    <string name="sharecomment">"Você gostará desta aplicação"</string>
+    <string name="check_version">"Verifique se uma nova versão está disponível"</string>
+    <string name="sendcomment">"Envie um email para o desenvolvedor"</string>
+</resources>
