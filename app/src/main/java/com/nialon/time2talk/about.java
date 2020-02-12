@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class about extends Activity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class about extends AppCompatActivity
 {
     TextView textTitre;
     TextView textAuth;
@@ -30,7 +32,7 @@ public class about extends Activity
         textDate =  findViewById(R.id.textDate);
         textTitre.setText(getString(R.string.app_name));
         textAuth.setText("Michel Nialon");
-        textDate.setText("26/01/2020");
+        textDate.setText("02/02/2020");
 
         /* Format title */
         /*

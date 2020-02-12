@@ -3,17 +3,13 @@ package com.nialon.time2talk.controller;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.media.Ringtone;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.nialon.time2talk.R;
 import com.nialon.time2talk.view.ParticipantV;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -24,8 +20,7 @@ public class ParticipantsC
     private int timeMax;
     private Boolean multipleSpeakers;
     private Boolean soundsignal;
-    private String stringtone;
-    public Ringtone ringtone;
+    //public Ringtone ringtone;
     private boolean landscape;
     public boolean silentMode;
     private int lastParticipant = 0;
@@ -34,14 +29,15 @@ public class ParticipantsC
 
     private Context ctxt;
 
-    public ParticipantsC(int timeMax, Context context, boolean multipleSpeakers, boolean soundsignal, Ringtone ringtone)
+    public ParticipantsC(int timeMax, Context context, boolean multipleSpeakers, boolean soundsignal)
     {
         allParticipantsList = new ArrayList<ParticipantC>();
         totalTime = 0;
         this.timeMax = timeMax;
         this.multipleSpeakers = multipleSpeakers;
         this.soundsignal = soundsignal;
-        this.ringtone = ringtone;
+        //this.ringtone = ringtone;
+        this.silentMode=false;
         this.ctxt = context;
 
         handler1 = new Handler();
@@ -80,7 +76,7 @@ public class ParticipantsC
 
     public void update()
     {
-        System.out.println("update " + nbselelected() + " / " + allParticipantsList.size());
+        //System.out.println("update " + nbselelected() + " / " + allParticipantsList.size());
         for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
@@ -90,7 +86,7 @@ public class ParticipantsC
             {
                 p.getParticipantM().incDuration();
                 totalTime ++;
-                System.out.println(p);
+                //System.out.println(p);
             }
         }
     }
@@ -182,25 +178,27 @@ public class ParticipantsC
     }
     public String getInformationsHTML()
     {
-        String infos = "";
+        StringBuilder infos = new StringBuilder("");
         System.out.println("getInformations ");
 
-        infos += "<table border=0>";
+        infos.append("<html><head></head><body>");
+        infos.append("<table border=0>");
 
         for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
-            infos += "<tr>";
+            infos.append("<tr>");
             ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
-            infos += "<td>";
-            infos += String.format(Locale.FRANCE,"%-20s", p.getParticipantV().getParticipantM().getName());
-            infos += "</td><td>";
-            infos += p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true);
-            infos += "</td>";
-            infos += "<td>" + p.getParticipantV().getPercentage() + "/td>";
-            infos += "</tr>";
+            infos.append("<td>");
+            infos.append(String.format(Locale.FRANCE,"%-20s", p.getParticipantV().getParticipantM().getName()));
+            infos.append("</td><td>");
+            infos.append(p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true));
+            infos.append("</td>");
+            infos.append("<td>" + p.getParticipantV().getPercentage() + "</td>");
+            infos.append("</tr>");
         }
-        infos += "</table>";
-        return infos;
+        infos.append("</table>");
+        infos.append("</body></html>");
+        return infos.toString();
     }
 
     public int getTotal()
@@ -344,11 +342,11 @@ public class ParticipantsC
         return lastParticipant;
     }
 
-    public void setRingtone(Ringtone ringtone)
+   /* public void setRingtone(Ringtone ringtone)
     {
         this.ringtone = ringtone;
     }
-
+*/
     public void setLandscape(boolean landscape) {
         this.landscape = landscape;
     }

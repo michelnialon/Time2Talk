@@ -2,10 +2,11 @@ package com.nialon.time2talk;
 
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-public class appPreferencesActivity extends PreferenceActivity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class appPreferencesActivity extends AppCompatActivity
 
 {
     @Override

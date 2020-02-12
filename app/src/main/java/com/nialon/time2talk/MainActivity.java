@@ -13,20 +13,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.media.AudioManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-
-import androidx.annotation.Dimension;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -35,16 +26,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-
 import com.nialon.time2talk.controller.ParticipantC;
 import com.nialon.time2talk.controller.ParticipantsC;
 import com.nialon.time2talk.model.ParticipantM;
@@ -57,20 +45,20 @@ public class MainActivity extends AppCompatActivity
     private Typeface m_Typeface;
     private ParticipantsC allParticipants;
     private AdView adView;
-    private String stringtone;
-    private Ringtone ringtone;
     private ImageButton imageButton1;
     private boolean silentmode=false;
     private ImageButton imgButton4;
-    private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-    private Handler handler;
-    private Runnable runnable;
     private Display display;
     private Point size;
     Rect windowRect;
     private int scrwidth;
     private int scrheight;
     private ScrollView scrvmain;
+    //    private ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+//    private Handler handler;
+//    private Runnable runnable;
+// private String stringtone;
+//private Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,22 +72,20 @@ public class MainActivity extends AppCompatActivity
 
         size = new Point();
         setContentView(R.layout.activity_main);
+
         //m_Typeface = Typeface.createFromAsset(this.getAssets(), "LED.Font.ttf");
         m_Typeface = Typeface.createFromAsset(this.getAssets(), "led_counter-7.ttf");
-
         imageButton1 = findViewById(R.id.imageButton1);
-
         imgButton4 = findViewById(R.id.imageButton4);
         scrvmain = findViewById(R.id.scrvmain);
-
-        MobileAds.initialize(this, "ca-app-pub-4468029712209847~8644725633");
         //TextView textView =findViewById(R.id.tvhelp);
         //textView.setTypeface(m_Typeface);
+
+        MobileAds.initialize(this, "ca-app-pub-4468029712209847~8644725633");
         adView = findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
         //adView.setAdSize(AdSize.BANNER);
 //        adView.setAdUnitId("ca-app-pub-3940256099942544~3347511713");
-
         adView.loadAd(adRequest);
 
         // set title bar
@@ -109,18 +95,17 @@ public class MainActivity extends AppCompatActivity
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
-
         String s = prefs.getString("maxTime", "15");
         timeMax = Integer.parseInt(s);
         boolean multipleSpeakers = prefs.getBoolean("multiplespeakers", false);
         boolean soundsignal = prefs.getBoolean("soundsignal", false);
-        stringtone = prefs.getString("ringtone", "");
-        Uri ringtoneUri = Uri.parse(stringtone);
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
-        allParticipants = new ParticipantsC(timeMax, this, multipleSpeakers, soundsignal, ringtone);
+
+        //stringtone = prefs.getString("ringtone", "");
+        //Uri ringtoneUri = Uri.parse(stringtone);
+        //ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+        allParticipants = new ParticipantsC(timeMax, this, multipleSpeakers, soundsignal);
 
         if (savedInstanceState != null)
         {
@@ -157,6 +142,7 @@ public class MainActivity extends AppCompatActivity
         };*/
         //handler.postDelayed(runnable, 1000);
     } // onCreate
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -257,6 +243,7 @@ public class MainActivity extends AppCompatActivity
                 Log.d("soundsignal", ss.toString());
                 allParticipants.setSoundSignal(ss);
             }
+            /*
             if (key.equals("ringtone"))
             {
                 String rt = sharedPreferences.getString("ringtone", "");
@@ -266,6 +253,7 @@ public class MainActivity extends AppCompatActivity
                 Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
                 allParticipants.setRingtone(ringtone);
             }
+            */
         }
     };
     @Override
@@ -395,14 +383,14 @@ public class MainActivity extends AppCompatActivity
     public void shareData(View v)
     {
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
-        share.setType("text/html");
+        share.setType("message/rfc822");
         //share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 
         // Add data to the intent, the receiving app will decide
         // what to do with it.
         share.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.meetinginfos));
-        share.putExtra(Intent.EXTRA_TEXT, allParticipants.getInformations());
-        share.putExtra(Intent.EXTRA_HTML_TEXT, allParticipants.getInformationsHTML());
+        share.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(allParticipants.getInformationsHTML()));
+        //  share.putExtra(Intent.EXTRA_HTML_TEXT, allParticipants.getInformationsHTML());
 
         startActivity(Intent.createChooser(share, getResources().getString(R.string.sendinfos)));
     }

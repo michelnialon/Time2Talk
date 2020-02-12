@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Build;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,9 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.core.content.ContextCompat;
-
 import com.nialon.time2talk.R;
 import com.nialon.time2talk.controller.ParticipantsC;
 import com.nialon.time2talk.model.ParticipantM;
@@ -66,8 +65,11 @@ public class ParticipantV
         tvName.setText(model.getName());
         //tvName.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_blue_dark));
         tvName.setTextColor(Color.rgb(0,116,255));
-        tvName.setTextSize(22);
+        tvName.setTextSize(20);
         tvName.setTag(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           // tvName.setAutoSizeTextTypeUniformWithConfiguration(18, 22, 2, TypedValue.COMPLEX_UNIT_SP);
+        }
         tvName.setOnClickListener(allparticipants.getListener1());
 
         participantLayout.addView(tvName);
@@ -155,7 +157,7 @@ public class ParticipantV
     }
     public void toggleselect()
     {
-        allparticipants.ringtone.stop();
+        //allparticipants.ringtone.stop();
         if (selected)
         {
             System.out.println("selected");
