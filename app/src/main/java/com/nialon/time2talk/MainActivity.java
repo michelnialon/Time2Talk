@@ -35,8 +35,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.nialon.time2talk.controller.ParticipantC;
 import com.nialon.time2talk.controller.ParticipantsC;
-import com.nialon.time2talk.model.ParticipantM;
-import com.nialon.time2talk.view.ParticipantV;
+
+import java.util.Map;
 
 // todo: possibility to talk more than one attendee at a time
 public class MainActivity extends AppCompatActivity
@@ -180,15 +180,17 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
                 intent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { "mnialon@gmail.com" });
                 intent.putExtra(Intent.EXTRA_TEXT,
-                        Html.fromHtml(new StringBuilder()
-                                .append("<html><head></head><body>")
-                                .append("<p>---</p>")
-                                .append("<p>Version Application : " + AppVersion + "</p>")
-                                .append("<p>Android Version : " + Build.VERSION.SDK_INT + " (" + Build.VERSION.RELEASE + ")</p>")
-                                .append("<p>Device Type : " + Build.MANUFACTURER + " (" + Build.MODEL + ")</p>")
-                                .append("</body></html>")
-                                .toString())
-                );
+                        Html.fromHtml(
+                                "<html><head></head><body>"+
+                                "<p>---</p>" +
+                                "<p>Version Application : " + AppVersion + "</p>" +
+                                "<p>Android Version : " + Build.VERSION.SDK_INT + " (" + Build.VERSION.RELEASE + ")</p>" +
+                                "<p>Device Type : " + Build.MANUFACTURER + " (" + Build.MODEL + ")</p>" +
+                                "<p>Density : " + getResources().getDisplayMetrics().densityDpi + "</p>" +
+                                "<p>Height : " + getResources().getDisplayMetrics().heightPixels + "</p>" +
+                                "<p>Width : " + getResources().getDisplayMetrics().widthPixels + "</p>" +
+                                "</body></html>"));
+
                 startActivity(Intent.createChooser(intent, getResources().getString(R.string.sendcomment)));
                 return true;
             case R.id.mnu_share:
@@ -197,15 +199,43 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra(Intent.EXTRA_SUBJECT,  getResources().getString(R.string.app_name));
 
                 intent.putExtra(Intent.EXTRA_TEXT,
-                        Html.fromHtml(new StringBuilder()
-                                .append("<html><head></head><body>")
-                                .append("<p>" +  getResources().getString(R.string.sharecomment) + "</p>")
-                                .append("<p>https://play.google.com/store/apps/details?id=com.nialon.time2talk</p>")
-                                .append("<p>https://www.facebook.com/Time2Talk</p>")
-                                .append("</body></html>")
-                                .toString())
-                );
+                        Html.fromHtml(
+                                "<html><head></head><body>"+
+                                "<p>" +  getResources().getString(R.string.sharecomment) + "</p>" +
+                                "<p>https://play.google.com/store/apps/details?id=com.nialon.time2talk</p>" +
+                                "<p>https://www.facebook.com/Time2Talk</p>" +
+                                "</body></html>"));
                 startActivity(Intent.createChooser(intent, getResources().getString(R.string.share)));
+                return true;
+            case R.id.mnuSave:
+                allParticipants.SaveMeeting("myMeeting1");
+                return true;
+            case R.id.mnuLoad:
+                allParticipants.ClearMeeting();
+                // todo: let entering the name of the meeting
+                SharedPreferences sp = getSharedPreferences("myMeeting1", MODE_PRIVATE);
+                Map<String, ?> allEntries = sp.getAll();
+                LinearLayout lhelp = findViewById(R.id.layout_help);
+                lhelp.setVisibility(View.GONE);
+
+                LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
+
+                int total=0;
+                for (Map.Entry<String, ?> entry : allEntries.entrySet())
+                {
+                    ParticipantC pC;
+                    total += Integer.parseInt(entry.getValue().toString());
+                    if (entry.getKey().startsWith("F")) {
+                        pC = allParticipants.addItem(m_Typeface, this, entry.getKey().substring(1), allParticipants.getCount() + 1, Integer.parseInt(entry.getValue().toString()), true);
+                    }
+                    else
+                    {
+                        pC = allParticipants.addItem(m_Typeface, this, entry.getKey().substring(1), allParticipants.getCount() + 1, Integer.parseInt(entry.getValue().toString()), false);
+                    }
+                    allParticipantsLayout.addView(pC.getParticipantV().getParticipantLayout());
+                }
+                allParticipants.setTotal(total);
+                allParticipants.displayAll();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -282,6 +312,7 @@ public class MainActivity extends AppCompatActivity
             allParticipants.showProgressBar(false);
             allParticipants.setLandscape(false);
         }
+        allParticipants.displayAll();
     }
 
     @Override
@@ -319,7 +350,6 @@ public class MainActivity extends AppCompatActivity
     private  void mnuPrefs()
     {
         Intent intent = new Intent(this, appPreferencesActivity.class);
-
         startActivity(intent);
     }
 
@@ -330,13 +360,8 @@ public class MainActivity extends AppCompatActivity
         lhelp.setVisibility(View.GONE);
 
         LinearLayout allParticipantsLayout = findViewById(R.id.layout_root);
-
-        ParticipantM participantM = new ParticipantM(getString(R.string.participant)+ " " + (allParticipants.getLast() + 1), allParticipants.getCount()+1);
-        //participantM.setDuration(7200);
-        ParticipantV participantV = new ParticipantV(participantM, allParticipants, this, m_Typeface);
-        ParticipantC participantC = new ParticipantC(participantM, participantV);
-        allParticipantsLayout.addView(participantV.getParticipantLayout());
-        allParticipants.add(participantC);
+        ParticipantC pC = allParticipants.addItem(m_Typeface, this, getString(R.string.participant)+ " " + (allParticipants.getLast() + 1), allParticipants.getCount()+1, 0, false);
+        allParticipantsLayout.addView(pC.getParticipantV().getParticipantLayout());
     }
 
     public void resetData(View v)
@@ -351,6 +376,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 allParticipants.reset();
+                allParticipants.displayAll();
                 Toast.makeText(getApplicationContext(), getString(R.string.dataset2zero), Toast.LENGTH_SHORT).show();
             }
         });
@@ -389,7 +415,8 @@ public class MainActivity extends AppCompatActivity
         // Add data to the intent, the receiving app will decide
         // what to do with it.
         share.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.meetinginfos));
-        share.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(allParticipants.getInformationsHTML()));
+        //share.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(allParticipants.getInformationsHTML()));
+        share.putExtra(Intent.EXTRA_TEXT, allParticipants.getInformations());
         //  share.putExtra(Intent.EXTRA_HTML_TEXT, allParticipants.getInformationsHTML());
 
         startActivity(Intent.createChooser(share, getResources().getString(R.string.sendinfos)));

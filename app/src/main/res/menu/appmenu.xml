@@ -4,6 +4,12 @@
     <item android:id="@+id/mnuPrefs"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/parameters" />
+    <item android:id="@+id/mnuSave"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/saveMeetingInfos" />
+    <item android:id="@+id/mnuLoad"
+        android:icon="@android:drawable/ic_menu_upload"
+        android:title="@string/loadMeetingInfos" />
     <item
         android:id="@+id/mnuAbout"
         android:icon="@android:drawable/ic_dialog_info"
@@ -15,12 +21,10 @@
     </item>
     <item android:id="@+id/mnu_share"
         android:icon="@android:drawable/ic_menu_share"
-        app:showAsAction="ifRoom"
         android:title="@string/share">
     </item>
     <item android:id="@+id/mnu_sendcomment"
         android:icon="@android:drawable/ic_menu_send"
-        app:showAsAction="ifRoom"
         android:title="@string/sendcomment">
     </item>
 

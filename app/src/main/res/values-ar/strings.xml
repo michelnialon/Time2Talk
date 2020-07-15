@@ -28,7 +28,7 @@
     <string name="yes">"نعم"</string>
     <string name="no">"ليس"</string>
     <string name="modification">"تغيير"</string>
-    <string name="entername">"من فضلك ادخل الاسم"</string>
+    <string name="entervalue">"من فضلك ادخل الاسم"</string>
     <string name="confirmation">"التأكيد"</string>
     <string name="ok">"حسنا"</string>
     <string name="talknomore">" لا يتحدث بعد الآن."</string>
@@ -41,4 +41,7 @@
     <string name="sharecomment">"سوف يعجبك هذا التطبيق"</string>
     <string name="check_version">"تحقق من توفر إصدار جديد"</string>
     <string name="sendcomment">إرسال بريد إلكتروني إلى المطور</string>
+    <string name="woman">النساء</string>
+    <string name="loadMeetingInfos">إعادة تحميل الاجتماع الأخير</string>
+    <string name="saveMeetingInfos">حفظ الاجتماع</string>
 </resources>

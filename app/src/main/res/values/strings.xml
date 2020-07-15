@@ -28,7 +28,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="modification">Modification</string>
-    <string name="entername">Please enter new value</string>
+    <string name="entervalue">Please enter new value in second</string>
     <string name="ok">OK</string>
     <string name="talknomore">" is not talking anymore."</string>
     <string name="starttalking">" is starting to talk."</string>
@@ -40,4 +40,7 @@
     <string name="check_version">Check if new version available</string>
     <string name="sendcomment">Send email to the developer</string>
     <string name="sharecomment">You will like this application.</string>
+    <string name="woman">Woman</string>
+    <string name="saveMeetingInfos">Save meeting</string>
+    <string name="loadMeetingInfos">Reload last meeting</string>
 </resources>

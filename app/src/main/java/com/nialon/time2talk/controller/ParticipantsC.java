@@ -1,17 +1,31 @@
 package com.nialon.time2talk.controller;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Handler;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.nialon.time2talk.R;
+import com.nialon.time2talk.model.ParticipantM;
 import com.nialon.time2talk.view.ParticipantV;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ParticipantsC
 {
@@ -73,10 +87,21 @@ public class ParticipantsC
         participantC.getParticipantV().setIndex(allParticipantsList.size()-1);
         lastParticipant++;
     }
+    public ParticipantC addItem(Typeface typeface, Activity activity, String attendeeName, int id, int attendeeDuration, Boolean female)
+    {
+        Log.d("addItem", "ParticipantsC");
+
+        ParticipantM participantM = new ParticipantM(attendeeName, id, attendeeDuration, female);
+        ParticipantV participantV = new ParticipantV(participantM, this, activity, typeface);
+        ParticipantC participantC = new ParticipantC(participantM, participantV);
+
+        add(participantC);
+        return participantC;
+    }
 
     public void update()
     {
-        //System.out.println("update " + nbselelected() + " / " + allParticipantsList.size());
+        System.out.println("update " + nbselelected() + " / " + allParticipantsList.size());
         for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
@@ -167,7 +192,7 @@ public class ParticipantsC
         for (int counter = 0; counter < allParticipantsList.size(); counter++)
         {
             ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
-            infos += String.format(Locale.FRANCE,"%-20.20s : %s (%s)", p.getParticipantV().getParticipantM().getName(),
+            infos += String.format(Locale.FRANCE,"%-20s : %s (%s)\n", p.getParticipantV().getParticipantM().getName(),
                     p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true),
                     p.getParticipantV().getPercentage()
             );
@@ -194,11 +219,41 @@ public class ParticipantsC
             infos.append(p.getParticipantV().formatDuration(p.getParticipantM().getDuration(), true));
             infos.append("</td>");
             infos.append("<td>" + p.getParticipantV().getPercentage() + "</td>");
-            infos.append("</tr>");
+            infos.append("</tr></br>");
         }
         infos.append("</table>");
         infos.append("</body></html>");
         return infos.toString();
+    }
+    public void SaveMeeting(String meetingName)
+    {
+        SharedPreferences sp = ctxt.getSharedPreferences(meetingName, MODE_PRIVATE);
+        SharedPreferences.Editor sedt = sp.edit();
+        sedt.clear();
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
+        {
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
+            if (p.getParticipantM().getFemale()) {
+                sedt.putString("F" + p.getParticipantV().getParticipantM().getName(), p.getParticipantM().getDuration().toString());
+            }
+            else {
+                sedt.putString("M" + p.getParticipantV().getParticipantM().getName(), p.getParticipantM().getDuration().toString());
+            }
+        }
+        sedt.apply();
+    }
+    public void ClearMeeting()
+    {
+        ParticipantV pV;
+
+        for (int counter = 0; counter < allParticipantsList.size(); counter++)
+        {
+            ParticipantC p  = (ParticipantC)allParticipantsList.get(counter);
+            pV = p.getParticipantV();
+            pV.getParticipantLayout().setVisibility(View.GONE);
+        }
+        allParticipantsList.clear();
+        lastParticipant=0;
     }
 
     public int getTotal()
@@ -246,21 +301,49 @@ public class ParticipantsC
             edtText.setText(((TextView)v).getText());
             edtText.setPaintFlags(0);
             edtText.setSingleLine();
+            edtText.setFocusable(true);
+//            edtText.requestFocus();
+//            InputMethodManager mngr = (InputMethodManager) ctxt.getSystemService(Context.INPUT_METHOD_SERVICE);
+//            mngr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+            final Switch swFemale = new Switch(ctxt);
+            swFemale.setText(ctxt.getResources().getString(R.string.woman));
+            swFemale.setChecked(((ParticipantV)v.getTag()).getParticipantM().getFemale());
+            swFemale.setThumbTextPadding(10);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
             builder.setTitle(ctxt.getResources().getString(R.string.modification));
-            builder.setMessage(ctxt.getResources().getString(R.string.entername));
+           // builder.setMessage(ctxt.getResources().getString(R.string.entername));
             builder.setCancelable(true);
             builder.setView(edtText);
+            LinearLayout relative=new LinearLayout(ctxt);
+            relative.setOrientation(LinearLayout.VERTICAL);
+           // relative.addView(edtText);
+            relative.addView(swFemale);
+            builder.setCustomTitle(relative);
             builder.setNeutralButton(ctxt.getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
             {
                 @Override
+                @SuppressLint("ResourceType")
                 public void onClick(DialogInterface dialog, int which)
                 {
                     ((TextView)v).setText(edtText.getText().toString());
                     ((ParticipantV)v.getTag()).getParticipantM().setName(edtText.getText().toString());
+                    if (swFemale.isChecked())
+                    {
+                        ((ParticipantV)v.getTag()).getParticipantM().setFemale();
+                        ImageButton imageButton = ((ParticipantV)v.getTag()).getParticipantLayout().findViewById(1000);
+                        imageButton.setImageResource(ctxt.getResources().getIdentifier("deluser_female_on", "mipmap", ctxt.getPackageName()));
+                    }
+                    else
+                    {
+                        ((ParticipantV)v.getTag()).getParticipantM().setMale();
+                        ImageButton imageButton = ((ParticipantV)v.getTag()).getParticipantLayout().findViewById(1000);
+                        imageButton.setImageResource(ctxt.getResources().getIdentifier("deluser_on", "mipmap", ctxt.getPackageName()));
+                    }
+
                     //getparticipantM.setName(edtText.getText().toString());
-                    Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();
+                   // Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();
                 }
             });
             builder.show();
@@ -331,7 +414,49 @@ public class ParticipantsC
             builder.show();
         }
     };
+    public View.OnClickListener getListener4()
+    {
+        return Listener4;
+    }
 
+    private View.OnClickListener Listener4 = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(final View v)
+        {
+            System.out.println("listener4" + v.getParent() );
+            final EditText edtText = new EditText(ctxt);
+            edtText.setText(((ParticipantV)v.getTag()).getParticipantM().getDuration().toString());
+            edtText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            edtText.setPaintFlags(0);
+            edtText.setSingleLine();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
+            builder.setTitle(ctxt.getResources().getString(R.string.modification));
+            builder.setMessage(ctxt.getResources().getString(R.string.entervalue));
+            builder.setCancelable(true);
+            builder.setView(edtText);
+            builder.setNeutralButton(ctxt.getResources().getString(R.string.ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    int newvalue = 0;
+                    try
+                    {
+                        newvalue = Integer.parseInt(edtText.getText().toString());
+                        if (newvalue > 35999) {newvalue=35999;}
+                    }
+                    catch(Exception e) {};
+                    ((ParticipantV)v.getTag()).getParticipantM().setDuration(newvalue);
+                    ((ParticipantV)v.getTag()).displayDuration(landscape,soundsignal);
+                    //getparticipantM.setName(edtText.getText().toString());
+                    //Toast.makeText(ctxt,  ctxt.getResources().getString(R.string.namemodified)+ " :" +edtText.getText() , Toast.LENGTH_LONG).show();
+                }
+            });
+            builder.show();
+        }
+    };
     public int getCount()
     {
         return allParticipantsList.size();

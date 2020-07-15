@@ -28,7 +28,7 @@
     <string name="yes">"हां"</string>
     <string name="no">"नहीं"</string>
     <string name="modification">"परिवर्तन"</string>
-    <string name="entername">"कृपया नाम दर्ज करें"</string>
+    <string name="entervalue">" कृपया सेकंड में अवधि दर्ज करें"</string>
     <string name="confirmation">"पुष्टीकरण"</string>
     <string name="ok">"ठीक"</string>
     <string name="talknomore">" कोई बात नहीं कर रहा है।"</string>
@@ -41,4 +41,7 @@
     <string name="sharecomment">"आप इस आवेदन को पसंद करेंगे"</string>
     <string name="check_version">"जांचें कि क्या नया संस्करण उपलब्ध है"</string>
     <string name="sendcomment">डेवलपर को एक ईमेल भेजें</string>
+    <string name="woman">"महिला"</string>
+    <string name="loadMeetingInfos">" पिछली बैठक को फिर से लोड करें"</string>
+    <string name="saveMeetingInfos">मीटिंग सहेजें</string>
 </resources>

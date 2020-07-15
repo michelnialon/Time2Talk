@@ -28,7 +28,7 @@
     <string name="yes">"sí"</string>
     <string name="no">"no"</string>
     <string name="modification">"cambio"</string>
-    <string name="entername">"Por favor ingrese el nombre"</string>
+    <string name="entervalue">" Por favor ingrese la duración en segundos"</string>
     <string name="confirmation">"confirmación"</string>
     <string name="ok">"bueno"</string>
     <string name="talknomore">" ya no habla"</string>
@@ -41,4 +41,7 @@
     <string name="sharecomment">"Te gustará esta aplicación"</string>
     <string name="check_version">"Compruebe si hay una nueva versión disponible"</string>
     <string name="sendcomment">Enviar un correo electrónico al desarrollador</string>
+    <string name="woman">" mujer"</string>
+    <string name="loadMeetingInfos">" Recargar última reunión"</string>
+    <string name="saveMeetingInfos">Guardar reunión</string>
 </resources>

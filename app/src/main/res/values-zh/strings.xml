@@ -28,7 +28,7 @@
     <string name="yes">"是的"</string>
     <string name="no">"不"</string>
     <string name="modification">"变化"</string>
-    <string name="entername">"请输入名称"</string>
+    <string name="entervalue">"请输入名称"</string>
     <string name="confirmation">"确认"</string>
     <string name="ok">"行"</string>
     <string name="talknomore">" 不再说话了。"</string>
@@ -41,4 +41,7 @@
     <string name="sharecomment">"你会喜欢这个应用程序"</string>
     <string name="check_version">"检查是否有新版本"</string>
     <string name="sendcomment">发送电子邮件给开发人员</string>
+    <string name="woman">" 女人"</string>
+    <string name="loadMeetingInfos">" 重新加载上次会议"</string>
+    <string name="saveMeetingInfos">" 保存会议"</string>
 </resources>

@@ -32,7 +32,7 @@ public class about extends AppCompatActivity
         textDate =  findViewById(R.id.textDate);
         textTitre.setText(getString(R.string.app_name));
         textAuth.setText("Michel Nialon");
-        textDate.setText("02/02/2020");
+        textDate.setText("12/07/2020");
 
         /* Format title */
         /*

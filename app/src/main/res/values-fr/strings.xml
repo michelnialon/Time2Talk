@@ -28,7 +28,7 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="modification">Modification</string>
-    <string name="entername">Veuillez saisir le nom</string>
+    <string name="entervalue">Veuillez saisir la durée en secondes</string>
     <string name="confirmation">Confirmation</string>
     <string name="ok">OK</string>
     <string name="talknomore">" ne parle plus."</string>
@@ -41,4 +41,7 @@
     <string name="sharecomment">Cette application devrait t\'intéresser.</string>
     <string name="sendcomment">Envoyer un mail au développeur</string>
     <string name="share">Partager l\'application</string>
+    <string name="woman">Femme</string>
+    <string name="saveMeetingInfos">Sauvegarder la réunion</string>
+    <string name="loadMeetingInfos">Recharger la réunion</string>
 </resources>

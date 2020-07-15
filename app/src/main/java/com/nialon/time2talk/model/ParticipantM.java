@@ -5,12 +5,18 @@ public class ParticipantM
     private String  mName;
     private Integer mDuration;
     private Integer id;
+    private Boolean mFemale;
 
-    public ParticipantM(String mName, Integer id)
+    public Boolean getFemale() {
+        return mFemale;
+    }
+
+    public ParticipantM(String mName, Integer id, Integer duration, Boolean female)
     {
         this.mName = mName;
-        this.mDuration = 0;
+        this.mDuration = duration;
         this.id = id;
+        this.mFemale = female;
     }
 
     public String getName()
@@ -21,6 +27,15 @@ public class ParticipantM
     public void setName(String mName)
     {
         this.mName = mName;
+    }
+
+    public void setFemale()
+    {
+        this.mFemale = true;
+    }
+    public void setMale()
+    {
+        this.mFemale = false;
     }
 
     public Integer getDuration()

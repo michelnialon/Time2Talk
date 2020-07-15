@@ -30,7 +30,7 @@
     <string name="yes">"Ja"</string>
     <string name="no">"Nein"</string>
     <string name="modification">"Änderung"</string>
-    <string name="entername">"Bitte geben Sie den Namen ein"</string>
+    <string name="entervalue">" Bitte geben Sie die Dauer in Sekunden ein"</string>
     <string name="confirmation">"Bestätigung"</string>
     <string name="ok">"OK"</string>
     <string name="talknomore">"  spricht nicht mehr."</string>
@@ -43,4 +43,7 @@
     <string name="sharecomment">"Sie werden diese Anwendung mögen"</string>
     <string name="check_version">"Prüfen Sie, ob eine neue Version verfügbar ist"</string>
     <string name="sendcomment">Senden Sie eine E-Mail an den Entwickler</string>
+    <string name="woman">Frau</string>
+    <string name="loadMeetingInfos">" Letzte Besprechung neu laden"</string>
+    <string name="saveMeetingInfos">" Besprechung speichern"</string>
 </resources>

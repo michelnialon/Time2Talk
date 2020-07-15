@@ -1,5 +1,6 @@
 package com.nialon.time2talk.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,9 +9,9 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Build;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -45,6 +46,7 @@ public class ParticipantV
         return participantLayout;
     }
 
+    @SuppressLint("ResourceType")
     public ParticipantV(final ParticipantM participantM, final ParticipantsC allparticpants, Activity context, Typeface typeface)
     {
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
@@ -88,6 +90,8 @@ public class ParticipantV
         tvDuration.setTypeface(typeface);
         tvDuration.setTextSize(26);
         tvDuration.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_green_light));
+        tvDuration.setTag(this);
+        tvDuration.setOnClickListener(allparticipants.getListener4());
         participantLayout.addView(tvDuration);
 
         // Percentage
@@ -117,9 +121,18 @@ public class ParticipantV
 
         // Remove participant
         imgRemove = new ImageButton(ctxt);
-        imgRemove.setImageResource(ctxt.getResources().getIdentifier("deluser_on", "mipmap", ctxt.getPackageName()));
+        if (participantM.getFemale())
+        {
+            imgRemove.setImageResource(ctxt.getResources().getIdentifier("deluser_female_on", "mipmap", ctxt.getPackageName()));
+        }
+        else
+        {
+            imgRemove.setImageResource(ctxt.getResources().getIdentifier("deluser_on", "mipmap", ctxt.getPackageName()));
+        }
+
         imgRemove.setBackground(null);
         imgRemove.setTag(this);
+        imgRemove.setId(1000);
         imgRemove.setOnClickListener(allparticipants.getListener3());
 
         participantLayout.addView(imgRemove);
@@ -221,7 +234,7 @@ public class ParticipantV
             tvDuration.setTextColor(ContextCompat.getColor(ctxt, android.R.color.holo_green_light));
             //tvName.setTextColor(Color.GREEN);
             //tvPercentage.setTextColor(Color.GREEN);
-            StopNotification();
+            //StopNotification();
         }
 
         tvDuration.setText(formatDuration(val, landscape));
@@ -280,7 +293,7 @@ public class ParticipantV
         }
         else
         {
-            toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,150);
+            toneGen1.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD,150);
         }
 //        if (!allparticipants.ringtone.isPlaying())
         {
